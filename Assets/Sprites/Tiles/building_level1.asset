@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f97592cdae342efbe54d75d42ebd81, type: 3}
+  m_Name: building_level1
+  m_EditorClassIdentifier: 
+  exteriorTile: {fileID: 11400000, guid: 03565b4aebd0b46bdb24c64642ff8be6, type: 2}
+  interiorTile: {fileID: 11400000, guid: d2733cafd7d5e48b2be7b43e3ebe59cc, type: 2}
+  exteriorTileObject: {fileID: 836810754321184422, guid: cbdb21122a07f46288231e7cf4631116, type: 3}
+  interiorTileObject: {fileID: 7659784767582067351, guid: 7536abe0e34ab4c39bee562eaf0968db, type: 3}
+  width: 12
+  height: 6

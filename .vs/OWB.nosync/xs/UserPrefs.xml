@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{1BC857A2-31E0-AA02-6ADA-9CFF02DF6003}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NPCAnimations.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Managers/TownManager.cs" />
+      <File FileName="Assets/NPCs/BodyGenerator.cs" Line="14" Column="25" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="126" Column="6" />
+      <File FileName="Assets/NPC.cs" Line="37" Column="10" />
+      <File FileName="Assets/SpriteManager.cs" Line="7" Column="1" />
+      <File FileName="Assets/NPCAnimations.cs" Line="8" Column="22" />
+      <File FileName="Assets/Scripts/BuildingTile.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="OWB.nosync" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="NPCs" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="Debug" expanded="True" />
+                <Node name="Devices" expanded="True" />
+                <Node name="ItemScripts" expanded="True">
+                  <Node name="Item Logic" expanded="True" />
+                  <Node name="Specific Items" expanded="True" />
+                </Node>
+                <Node name="Managers" expanded="True" />
+                <Node name="Player" expanded="True" />
+              </Node>
+              <Node name="NPCAnimations.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="044bf68e-7769-4882-96be-3e2b7836e1c6" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
