@@ -57,6 +57,7 @@ public class Inventory : MonoBehaviour
                 if (itemSlots[i].itemStack.count + itemStack.count <= itemSlots[i].itemStack.item.maxCount)
                 {
                     itemSlots[i].itemStack.count += itemStack.count;
+                    itemSlots[i].UpdateCount();
                     return true;
                 }
             }

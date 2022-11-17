@@ -111,6 +111,8 @@ public class ChoppableObject : MonoBehaviour
     {
         for (int i = 0; i < nLogs; i++)
         {
+
+
             Vector2 position = new Vector2(_collider.bounds.min.x + _collider.size.y / nLogs * i, _collider.bounds.max.y);
             //Debug.Log($"Log position: {position}");
             _pool.DropItem(log, 1, position, DropStyle.Loot, 1);

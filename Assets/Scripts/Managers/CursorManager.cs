@@ -20,9 +20,8 @@ public class CursorManager : MonoBehaviour, IGameManager
 
     private void Update()
     {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int coordinate = tileMap.WorldToCell(mouseWorldPos);
-        //Debug.Log($"mouseWorldPos: {mouseWorldPos} -> {coordinate}");
+        //Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector3Int coordinate = tileMap.WorldToCell(mouseWorldPos);
     }
 
 }

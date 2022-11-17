@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f97592cdae342efbe54d75d42ebd81, type: 3}
+  m_Name: mart
+  m_EditorClassIdentifier: 
+  exteriorTile: {fileID: 0}
+  interiorTile: {fileID: 0}
+  exteriorTileObject: {fileID: 2862018803656265343, guid: fe5313432874245c08c0d29edf8ddb85, type: 3}
+  interiorTileObject: {fileID: 3397874524515728144, guid: 5b6e82fa83059460b9376b976ab08298, type: 3}
+  width: 12
+  height: 8

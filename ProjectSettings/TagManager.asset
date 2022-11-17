@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -17,13 +18,13 @@ TagManager:
   - Ground
   - Buildings
   - Items
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - InteriorColliders
+  - Level1Colliders
+  - Level2Colliders
+  - Level1Player
+  - Level2Player
+  - Level1NPC
+  - Level2NPC
   - 
   - 
   - 

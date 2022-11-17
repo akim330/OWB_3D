@@ -6,7 +6,7 @@ public class BodyGenerator : MonoBehaviour
 {
     private SpriteRenderer _placeHolder;
 
-    [SerializeField] AnimatorOverrideController _override;
+    public AnimatorOverrideController npcOverride;
 
     private Animator _animator;
 
@@ -21,7 +21,7 @@ public class BodyGenerator : MonoBehaviour
         _placeHolder.enabled = false;
 
         _animator = GetComponent<Animator>();
-        _animator.runtimeAnimatorController = _override;
+        _animator.runtimeAnimatorController = npcOverride;
 
         //SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
         //_hairRenderer = renderers[0];

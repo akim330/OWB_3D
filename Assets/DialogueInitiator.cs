@@ -5,31 +5,38 @@ using System.Text;
 
 public class DialogueInitiator : MonoBehaviour
 {
-    private List<DialogueBox> currentDialogueBoxes;
+    private List<DialoguePartner> currentDialogueBoxes;
 
-    private DialogueBox closestDialogue;
+    private DialoguePartner closestDialogue;
     private float closestDistance;
-    private DialogueBox currentTalking;
 
     private BoxCollider2D _collider;
 
+    private DialoguePartner currentTalking;
+    private bool inConvo;
+
     // Debug
+    private bool debug;
     private StringBuilder sb;
 
     private void Start()
     {
-        currentDialogueBoxes = new List<DialogueBox>();
+        debug = false;
+
+        currentDialogueBoxes = new List<DialoguePartner>();
         closestDistance = 99999f;
 
         _collider = GetComponent<BoxCollider2D>();
 
         sb = new StringBuilder();
+
+        inConvo = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        DialogueBox other = collision.GetComponentInChildren<DialogueBox>();
+        DialoguePartner other = collision.GetComponentInChildren<DialoguePartner>();
 
 
         if (other != null)
@@ -42,75 +49,106 @@ public class DialogueInitiator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DialogueBox other = collision.GetComponentInChildren<DialogueBox>();
+        //Debug.Log("Entering trigger");
+
+        DialoguePartner other = collision.GetComponent<DialoguePartner>();
 
         if (other != null)
         {
-            //Debug.Log($"Found a dialogue box! {other.transform.parent.name}");
+            if (debug)
+            {
+                Debug.Log($"Found a dialogue box! {other.gameObject.name}");
+            }
 
             currentDialogueBoxes.Add(other);
-            //UpdateClosest();
+            if (debug)
+            {
+                Debug.Log($"Adding a dialogue box: length {currentDialogueBoxes.Count}");
+            }
         }
     }
 
     private void Update()
     {
-        // (1) Find closest
-        DialogueBox previousClosest = closestDialogue;
-        closestDialogue = null;
-
-        closestDistance = 99999f;
-
-        sb.Clear();
-
-        for (int i = 0; i < currentDialogueBoxes.Count; i++)
+        if (!inConvo)
         {
-            float currentDistance = Vector2.Distance(currentDialogueBoxes[i].transform.parent.position, transform.position);
-            if (currentDistance < closestDistance)
+            // (1) Find closest
+            DialoguePartner previousClosest = closestDialogue;
+            closestDialogue = null;
+
+            closestDistance = 99999f;
+
+            sb.Clear();
+
+            for (int i = 0; i < currentDialogueBoxes.Count; i++)
             {
-                closestDialogue = currentDialogueBoxes[i];
-                closestDistance = currentDistance;
+                float currentDistance = Vector2.Distance(currentDialogueBoxes[i].transform.position, transform.position);
+                if (currentDistance < closestDistance)
+                {
+                    closestDialogue = currentDialogueBoxes[i];
+                    closestDistance = currentDistance;
+                }
+                sb.Append($"{currentDialogueBoxes[i].transform.name}: {currentDistance}\n");
             }
-            sb.Append($"{currentDialogueBoxes[i].transform.parent.name}: {currentDistance}\n");
+            if (closestDialogue != null)
+            {
+                sb.Append($"Closest: {closestDialogue.transform.name} at {closestDistance}\n");
+
+            }
+
+            if (previousClosest != null && previousClosest != closestDialogue)
+            {
+                previousClosest.HideTalkableBubble();
+            }
+
+            if (closestDialogue != null)
+            {
+                sb.Append("Showing the bubble");
+
+                closestDialogue.ShowTalkableBubble();
+            }
         }
-        if (closestDialogue != null)
+
+        if (debug)
         {
-            sb.Append($"Closest: {closestDialogue.transform.parent.name} at {closestDistance}\n");
-
+            if (sb.ToString() == "")
+            {
+                Debug.Log("No current dialogue boxes");
+            }
+            else
+            {
+                Debug.Log(sb.ToString());
+            }
         }
-
-        if (previousClosest != null && previousClosest != closestDialogue)
-        {
-            previousClosest.HideTalkableBubble();
-        }
-
-        if (closestDialogue != null)
-        {
-            sb.Append("Showing the bubble");
-
-            closestDialogue.ShowTalkableBubble();
-        }
-
-        //Debug.Log(sb.ToString());
 
         // (2) Triggering dialogue
         if (Input.GetKeyDown(KeyCode.M))
         {
+            if (debug)
+            {
+                Debug.Log($"closestDialogue: {closestDialogue != null} | currentTalking: {currentTalking != null}");
+
+            }
+
             if (closestDialogue == null) // Cancel current dialogue
             {
                 if (currentTalking != null)
                 {
-                    currentTalking.EndConversation();
+                    Managers.Dialogue.EndConversation();
                 }
             }
             else if (currentTalking == null)
             {
-                closestDialogue.StartConversation(this);
+                Managers.Dialogue.StartConversation(this, closestDialogue);
                 currentTalking = closestDialogue;
+                inConvo = true;
+
+                //closestDialogue.StartConversation(this);
+                //currentTalking = closestDialogue;
             }
             else
             {
-                closestDialogue.ProgressConversation();
+                Managers.Dialogue.ProgressConversation();
             }
         }
     }
@@ -123,6 +161,7 @@ public class DialogueInitiator : MonoBehaviour
     public void OnConversationEnd()
     {
         currentTalking = null;
+        inConvo = false;
     }
 
 }

@@ -6,6 +6,18 @@ using Random = UnityEngine.Random;
 using CustomArrayExtensions;
 using System.Text;
 
+public enum TileType
+{
+    Empty,
+    Solid
+}
+
+public enum TerrainType
+{
+    Dirt,
+    Concrete
+}
+
 public class TerrainGeneration : MonoBehaviour
 {
     [SerializeField] private bool _debug;
@@ -18,6 +30,8 @@ public class TerrainGeneration : MonoBehaviour
     [SerializeField] private Tilemap groundTileMap;
     [SerializeField] private Tilemap buildingTileMap;
     [SerializeField] private Tilemap interiorTileMap;
+
+    private TerrainType currentTerrainType;
  
     [Header("Dirt")]
     [SerializeField] private Tile[] dirtTiles;
@@ -34,6 +48,15 @@ public class TerrainGeneration : MonoBehaviour
     [SerializeField] private Tile[] upperRightGrassTiles;
     [SerializeField] private Tile[] upperLeftGrassTiles;
     [SerializeField] private Tile[] apexGrassTiles;
+
+    [Header("Concrete")]
+    [SerializeField] private Tile[] concreteTiles;
+    [SerializeField] private Tile[] topConcreteTiles;
+    [SerializeField] private Tile[] rightSideConcreteTiles;
+    [SerializeField] private Tile[] leftSideConcreteTiles;
+    [SerializeField] private Tile[] upperRightConcreteTiles;
+    [SerializeField] private Tile[] upperLeftConcreteTiles;
+    [SerializeField] private Tile[] apexConcreteTiles;
 
     [Header("Sinusoidal Surface Noise")]
     public float multiplier;
@@ -63,6 +86,9 @@ public class TerrainGeneration : MonoBehaviour
     [SerializeField] private GameObject tree;
     [SerializeField] private int minSpacing;
 
+    [Header("Lamps")]
+    [SerializeField] private GameObject lamp;
+
     [Header("Town")]
     [SerializeField] private bool placeTown;
     [SerializeField] private GameObject storePrefab;
@@ -84,7 +110,7 @@ public class TerrainGeneration : MonoBehaviour
     private StringBuilder sb;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         sb = new StringBuilder();
 
@@ -108,7 +134,9 @@ public class TerrainGeneration : MonoBehaviour
 
         GenerateTerrain();
 
-        PlaceTrees();
+        PlaceTrees("tree");
+
+        PlaceTrees("lamp");
 
         PlaceTown();
     }
@@ -123,6 +151,15 @@ public class TerrainGeneration : MonoBehaviour
 
     private void PlaceTown()
     {
+        bool storePlaced = false;
+        bool cafePlaced = false;
+        bool martPlaced = false;
+        int nCommercialAdded = 0;
+
+        // Log town coordinates with BiomeManager
+        Managers.Biome.townStartIdx = townStartIdx - worldExtentX;
+        Managers.Biome.townWidth = townWidth;
+
         sb = new StringBuilder($"Town starts at: {townStartIdx} and extends {townWidth}");
 
         int coolDown = 0;
@@ -135,125 +172,92 @@ public class TerrainGeneration : MonoBehaviour
                 // Place building with probability 1/5 only if the ground is level
                 if (Random.Range(0, 5) == 0)
                 {
-                    int randomChoice = Random.Range(1, 4);
+                    int randomChoice = Random.Range(1, 6);
                     int currentHeight = _finalHeights[townStartIdx + x] + 1;
 
-                    BuildingTile currentTile;
+                    //BuildingTile currentTile;
+                    GameObject building;
                     int widthToAdd;
 
-                    if (randomChoice == 1) // Store
+                    if (randomChoice <= 3 - nCommercialAdded) // Store
                     {
-                        currentTile = Managers.Building.GetStoreTile();
-                        widthToAdd = currentTile.width;
+                        bool lookingForUnused = true;
+                        BuildingType type = BuildingType.Store;
 
-                        Tile exterior = new Tile();
-                        exterior.gameObject = currentTile.exteriorTileObject;
-                        Tile interior = new Tile();
-                        interior.gameObject = null;
-
-
-                        if (widthToAdd < townWidth - x)
+                        while (lookingForUnused)
                         {
-                            //Debug.Log($"Instantiating a store at {-1 * worldExtentX + townStartIdx + x},{currentHeight}");
+                            int randomCommercialType = Random.Range(0, 3);
 
+                            if (randomCommercialType == 0)
+                            {
+                                if (!storePlaced)
+                                {
+                                    type = BuildingType.Store;
+                                    lookingForUnused = false;
+                                    storePlaced = true;
+                                    nCommercialAdded++;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else if (randomCommercialType == 1)
+                            {
+                                if (!cafePlaced)
+                                {
+                                    type = BuildingType.Cafe;
+                                    lookingForUnused = false;
+                                    cafePlaced = true;
+                                    nCommercialAdded++;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                            buildingTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), exterior);
-                            //buildingTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), currentTile.exteriorTile);
-                            interiorTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), interior);
+                            }
+                            else if (randomCommercialType == 2)
+                            {
+                                if (!martPlaced)
+                                {
+                                    type = BuildingType.Mart;
+                                    lookingForUnused = false;
+                                    cafePlaced = true;
+                                    nCommercialAdded++;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
 
-                            sb.AppendFormat("\nx = {0}: Random outcome: generated store!", x);
+                            }
+                            else
+                            {
+                                Debug.LogError($"Something is wrong!");
+                                type = BuildingType.Store;
+                            }
                         }
-                        else
-                        {
-                            sb.AppendFormat("\nx = {0}: Random outcome: too wide: {1}, {2}, {3}!", x, townWidth, x, widthToAdd);
 
-                        }
-
-
+                        Managers.Building.GetCommercialTile(type, out building, out widthToAdd);
                     }
-                    else if (randomChoice >= 2) // Building
+                    else if (randomChoice >= 4 - nCommercialAdded) // Building
                     {
-                        GameObject building;
-                        Managers.Building.GetRandomBuilding(1, 4, out building, out widthToAdd);
-
-                        building.transform.position = new Vector3(-1 * worldExtentX + townStartIdx + x + 0.5f, currentHeight + 0.5f, 10);
-
-                        // Graveyard 1
-
-                        //Tile exterior = new Tile();
-                        //exterior.gameObject = Instantiate(building);
-                        //exterior.gameObject.GetComponent<BuildingParent>().PopulateDoorParents();
-                        ////Debug.Log($"Populating properties of: {building.name}");
-                        //exterior.gameObject.GetComponentInChildren<InteriorParent>().PopulateProperties();
-
-                        ////Debug.Log($"Number of sprites: {building.GetComponentInChildren<InteriorParent>().sprites.Length}");
-
-
-                        //buildingTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), exterior);
-
-                        //Tile debugTile = (Tile)buildingTileMap.GetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0));
-
-                        //GameObject obj = buildingTileMap.GetInstantiatedObject(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0));
-                        //obj = building;
-
-                        ////Debug.Log($"Number of sprites: {building.GetComponentInChildren<InteriorParent>().sprites.Length}");
-
-                        //Debug.Log($"Number of sprites in instance {debugTile.gameObject.GetInstanceID()}: {debugTile.gameObject.GetComponentInChildren<InteriorParent>().sprites.Length}");
-                        //Debug.Log($"Number of sprites in instance {obj.GetInstanceID()}: {obj.GetComponentInChildren<InteriorParent>().sprites.Length}");
-
-                        //building.SetActive(false);
-
-
-                        // Graveyard 2
-
-                        //currentTile = Managers.Building.GetBuildingBaseTile();
-                        //widthToAdd = currentTile.width;
-
-                        //Tile exterior = new Tile();
-                        //exterior.gameObject = currentTile.exteriorTileObject;
-                        //Tile interior = new Tile();
-                        //interior.gameObject = currentTile.interiorTileObject;
-
-
-                        //if (widthToAdd < townWidth - x)
-                        //{
-                        //    int nLevels = Random.Range(1, 4);
-
-
-                        //    buildingTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0),
-                        //        exterior);
-                        //    interiorTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0),
-                        //        interior);
-
-
-                        //    for (int j = 0; j < nLevels; j++)
-                        //    {
-                        //        currentTile = Managers.Building.GetBuildingLevelTile();
-                        //        currentHeight += currentTile.height;
-
-                        //        exterior = new Tile();
-                        //        exterior.gameObject = currentTile.exteriorTileObject;
-                        //        interior = new Tile();
-                        //        interior.gameObject = currentTile.interiorTileObject;
-
-                        //        buildingTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), exterior);
-                        //        interiorTileMap.SetTile(new Vector3Int(-1 * worldExtentX + townStartIdx + x, currentHeight, 0), interior);
-
-                        //    }
-                        //    sb.AppendFormat("\nx = {0}: Random outcome: generated building with {1} levels", x, nLevels);
-
-                        //}
-                        //else
-                        //{
-                        //    sb.AppendFormat("\nx = {0}: Random outcome: too wide: {1}, {2}, {3}!", x, townWidth, x, widthToAdd);
-                        //}
-
+                        Managers.Building.GetRandomApartment(1, 4, out building, out widthToAdd);
                     }
                     else
                     {
                         Debug.Log("Error! Something wrong happened");
                         widthToAdd = -1;
+                        building = null;
                     }
+
+                    building.transform.position = new Vector3(-1 * worldExtentX + townStartIdx + x + 0.5f, currentHeight + 0.5f, 10);
+                    BuildingTree buildingTree = building.GetComponent<BuildingTree>();
+
+                    buildingTree.PopulateAllProperties();
+
+                    Managers.Town.LogBuilding(buildingTree);
 
                     coolDown = Mathf.FloorToInt(widthToAdd * 1.5f);
                 }
@@ -278,24 +282,60 @@ public class TerrainGeneration : MonoBehaviour
         }
         //Debug.Log(sb.ToString());
 
-        Managers.Town.PlacePeople();
+        Managers.Town.PlaceNPCsInHouses();
+        //Managers.Town.PlacePeopleOutside();
     }
 
-    private void PlaceTrees()
+    private void PlaceTrees(string objectType)
     {
+        int placeEvery;
+
+        GameObject prefab;
+        if (objectType == "tree")
+        {
+            prefab = tree;
+            placeEvery = 20;
+        }
+        else if (objectType == "lamp")
+        {
+            prefab = lamp;
+            placeEvery = 15;
+        }
+        else
+        {
+            Debug.LogError("objecType not recognized");
+            prefab = null;
+            placeEvery = 20;
+        }
+
         int coolDown = 0;
 
         for (int x = 0; x < mapWidth; x++)
         {
+            if (objectType == "tree")
+            {
+                if (x >= townStartIdx && x <= townStartIdx + townWidth)
+                {
+                    continue;
+                }
+            }
+            else if (objectType == "lamp")
+            {
+                if (x <= townStartIdx || x >= townStartIdx + townWidth)
+                {
+                    continue;
+                }
+            }
+
             // Check if cool down is 0 to ensure minimum spacing
             if (coolDown == 0)
             {
                 // Place tree with probability 1/20 only if the ground is level
-                if (Random.Range(0, 20) == 0 && CheckLevelGround(x))
+                if (Random.Range(0, placeEvery) == 0 && CheckLevelGround(x))
                 {
 
                     float yPos = _finalHeights[x] + 1;
-                    GameObject treeClone = Instantiate(tree, new Vector3(x - worldExtentX, yPos, tree.transform.position.z), Quaternion.Euler(Vector3.zero));
+                    GameObject treeClone = Instantiate(prefab, new Vector3(x - worldExtentX, yPos, tree.transform.position.z), Quaternion.Euler(Vector3.zero));
                     treeClone.SetActive(true);
                     coolDown = minSpacing;
                 }
@@ -342,8 +382,6 @@ public class TerrainGeneration : MonoBehaviour
         {
             _perlinHeights[i] = CalculatePerlinHeight(i);
         }
-        //Debug.Log($"Mapwidth: {mapWidth} | Initialized Perlin heights: {_perlinHeights.Length}");
-
     }
 
     private void CalculateFinalHeights()
@@ -437,27 +475,16 @@ public class TerrainGeneration : MonoBehaviour
 
         groundTileMap.ClearAllTiles();
 
-        GenerateSurfaceNoise();
-        //PrintArray(surfaceNoise);
+        // GenerateSurfaceNoise();
 
-        //Vector3Int[] positions = new Vector3Int[(endX - startX + 1) * (endY - startY + 1)];
-        //Tile[] tiles = new Tile[(endX - startX + 1) * (endY - startY + 1)];
+        Tile[] topTiles;
+        Tile[] upperRightTiles;
+        Tile[] upperLeftTiles;
+        Tile[] apexTiles;
+        Tile[] rightSideTiles;
+        Tile[] leftSideTiles;
+        Tile[] middleTiles;
 
-        //int i = 0;
-        //for (int x = startX; x <= endX; x++)
-        //{
-        //    for (int y = startY; y <= endY; y++)
-        //    {
-        //        //positions[i] = new Vector3Int(x, y, 0);
-        //        tiles[i] = dirtTile;
-        //        i++;
-        //        //tileMap.SetTile(new Vector3Int(x, y, 0), dirtTile);
-        //    }
-        //}
-
-        //tileMap.SetTilesBlock(new BoundsInt(new Vector3Int((endX + startX) / 2, (endY + startY) / 2, 1), new Vector3Int(worldExtentX * 2, worldExtentY * 2, 0)),
-        //    tiles
-        //    );
 
         var area = new BoundsInt(startX, startY, 0, mapWidth, mapHeight, 1);
         var tileArray = new TileBase[area.size.x * area.size.y * area.size.z];
@@ -469,6 +496,52 @@ public class TerrainGeneration : MonoBehaviour
         {
             for (var x = 0; x < mapWidth; x++) // Relative units away from the start (only positive)
             {
+
+                if (x >= townStartIdx && x <= townStartIdx + townWidth)
+                {
+                    currentTerrainType = TerrainType.Concrete;
+                }
+                else
+                {
+                    currentTerrainType = TerrainType.Dirt;
+                }
+
+
+                if (currentTerrainType == TerrainType.Dirt)
+                {
+                    middleTiles = dirtTiles;
+                    topTiles = topGrassTiles;
+                    upperRightTiles = upperRightGrassTiles;
+                    upperLeftTiles = upperLeftGrassTiles;
+                    apexTiles = apexGrassTiles;
+
+                    leftSideTiles = leftSideGrassTiles;
+                    rightSideTiles = rightSideGrassTiles;
+                }
+                else if (currentTerrainType == TerrainType.Concrete)
+                {
+                    middleTiles = concreteTiles;
+                    topTiles = topConcreteTiles;
+                    upperRightTiles = upperRightConcreteTiles;
+                    upperLeftTiles = upperLeftConcreteTiles;
+                    apexTiles = apexConcreteTiles;
+
+                    leftSideTiles = leftSideConcreteTiles;
+                    rightSideTiles = rightSideConcreteTiles;
+                }
+                else
+                {
+                    middleTiles = dirtTiles;
+                    topTiles = topDirtTiles;
+                    upperRightTiles = upperRightDirtTiles;
+                    upperLeftTiles = upperLeftDirtTiles;
+                    apexTiles = apexDirtTiles;
+
+                    leftSideTiles = leftSideDirtTiles;
+                    rightSideTiles = rightSideDirtTiles;
+                    Debug.LogError("Unrecognized terrain type");
+                }
+
                 //float yThreshold = GetSurfaceNoiseValue(x);
 
                 // Get neighboring
@@ -510,19 +583,19 @@ public class TerrainGeneration : MonoBehaviour
 
                     if (leftNeighbor && rightNeighbor)
                     {
-                        tileArray[i] = topGrassTiles.GetRandom();
+                        tileArray[i] = topTiles.GetRandom();
                     }
                     else if (leftNeighbor)
                     {
-                        tileArray[i] = upperRightGrassTiles.GetRandom();
+                        tileArray[i] = upperRightTiles.GetRandom();
                     }
                     else if (rightNeighbor)
                     {
-                        tileArray[i] = upperLeftGrassTiles.GetRandom();
+                        tileArray[i] = upperLeftTiles.GetRandom();
                     }
                     else
                     {
-                        tileArray[i] = apexGrassTiles.GetRandom();
+                        tileArray[i] = apexTiles.GetRandom();
                     }
 
                 }
@@ -532,19 +605,19 @@ public class TerrainGeneration : MonoBehaviour
 
                     if (leftNeighbor && rightNeighbor)
                     {
-                        tileArray[i] = dirtTiles.GetRandom();
+                        tileArray[i] = middleTiles.GetRandom();
                     }
                     else if (leftNeighbor)
                     {
-                        tileArray[i] = rightSideGrassTiles.GetRandom();
+                        tileArray[i] = rightSideTiles.GetRandom();
                     }
                     else if (rightNeighbor)
                     {
-                        tileArray[i] = leftSideGrassTiles.GetRandom();
+                        tileArray[i] = leftSideTiles.GetRandom();
                     }
                     else
                     {
-                        tileArray[i] = dirtTiles.GetRandom();
+                        tileArray[i] = middleTiles.GetRandom();
                     }
                     
                 }
@@ -557,10 +630,10 @@ public class TerrainGeneration : MonoBehaviour
 
     }
 
-    private float GetSurfaceNoiseValue(int x)
-    {
-        return surfaceNoise[x];
-    }
+    //private float GetSurfaceNoiseValue(int x)
+    //{
+    //    return surfaceNoise[x];
+    //}
 
     private void GenerateSurfaceNoise()
     {
@@ -647,6 +720,19 @@ public class TerrainGeneration : MonoBehaviour
         float noise1 = perlinMultiplier * (Mathf.PerlinNoise((float) x / mapWidth * scale + offset, fixedY) - 0.5f);
         float noise2 = perlinMultiplier2 * (Mathf.PerlinNoise((float) x / mapWidth * scale2 + offset2, fixedY2) - 0.5f);
         return weight * noise1 + (1 - weight) * noise2;
+    }
+
+    public TileType GetTileType(Vector2Int pos)
+    {
+        Tile tile = (Tile) groundTileMap.GetTile((Vector3Int) pos);
+        if (tile == null)
+        {
+            return TileType.Empty;
+        }
+        else
+        {
+            return TileType.Solid;
+        }
     }
 
     //private float AdjustedSigmoid(float x)

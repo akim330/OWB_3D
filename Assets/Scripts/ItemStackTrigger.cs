@@ -56,14 +56,8 @@ public class ItemStackTrigger : MonoBehaviour
     {
         if (!justDropped)
         {
-            //Debug.Log($"Triggered entered by {collider.tag}!");
-
             if (collider.tag == "Player")
             {
-                //Debug.Log($"It's player!");
-
-                //Debug.Log("Player colliding with item");
-
                 if (_inventory.AddItem(_itemStackObject.itemStack))
                 {
                     _pool.Reabsorb(_itemStackObject);

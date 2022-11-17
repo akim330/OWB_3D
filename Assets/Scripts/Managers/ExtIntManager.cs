@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+
 public class ExtIntManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
     [SerializeField] private SpriteMask[] _masks;
     private Sprite[] _sprites;
-    private Vector3[] _positions;
+    private Vector2[] _positions;
 
     [SerializeField] private Camera _cam;
     [SerializeField] private GameObject _cameraCover;
@@ -18,116 +19,213 @@ public class ExtIntManager : MonoBehaviour, IGameManager
 
     [SerializeField] private GameObject _player;
 
-    private BuildingDoor[] _exteriorDoors;
-    private InteriorBuildingDoor[] _interiorDoors;
-
-    //private GameObject interiorObject;
-    //private InteriorColliderParent interiorColliderParent;
-
-    private InteriorParent _currentInterior;
-
-    private int interiorCamZ = 40;
-    private int interiorPlayerZ = 41;
+    //private int interiorCamZ = 20;
+    //private int interiorPlayerZ = 21;
     private int exteriorCamZ = -20;
     private int exteriorPlayerZ = -10;
 
+    private BuildingNode _activeNode;
+
+    private bool debug;
+
     public void Startup()
     {
+        debug = false;
     }
 
-    public void ToInterior(BuildingParent buildingParent) 
+
+    public void TransitionToNode(BuildingNode node)
     {
-        Debug.Log($"Going to interior! {buildingParent.name}");
-
-        _currentInterior = buildingParent.gameObject.GetComponentInChildren<InteriorParent>();
-
-        // Set sprite mask to current interior shape (so that it appears through the camera cover)
-        _sprites = _currentInterior.sprites;
-        _positions = _currentInterior.positions;
-
-        if (_sprites.Length > _masks.Length)
+        if (debug)
         {
-            Debug.LogError($"ERROR: Need more masks. Only have {_masks.Length} but need {_sprites.Length}");
+            Debug.Log($"Player going to node {node.ToString()}");
         }
+        //buildingParent.TransitionToLevel(level);
 
-        for (int i = 0; i < _masks.Length; i++)
+        if (_activeNode != null)
         {
-            if (i < _sprites.Length)
-            {
-                //Debug.Log($"Setting mask {i}");
-                _masks[i].sprite = _sprites[i];
-                _masks[i].transform.position = _currentInterior.transform.TransformPoint(_positions[i]);
-            }
-            else
+            _activeNode.Deactivate();
+        }
+        _activeNode = node;
+        node.Activate();
+
+        _sprites = node.sprites;
+        _positions = node.positions;
+
+        // (1) Set sprite masks 
+
+        if (node.level == 0)
+        {
+            // GOING TO EXTERIOR: Set sprite masks to null
+            for (int i = 0; i < _masks.Length; i++)
             {
                 _masks[i].sprite = null;
             }
-        }        
-
-        // Activate camera cover
-        _cameraCover.SetActive(true);
-
-        // Inactivate exterior virtual camera so that we're just using the main camera (so we can control the Z position)
-        _exteriorCam.gameObject.SetActive(false);
-
-        // Set main camera Z position so that it's beyond the town level
-        _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, interiorCamZ);
-
-        // Move player so that they're beyond town level
-        _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, interiorPlayerZ);
-
-        // Activate interior collider walls
-        _currentInterior.ActivateColliders();
-
-        // Set doors
-        _exteriorDoors = buildingParent.GetComponentsInChildren<BuildingDoor>(true);
-        _interiorDoors = buildingParent.GetComponentsInChildren<InteriorBuildingDoor>(true);
-
-        foreach(BuildingDoor door in _exteriorDoors)
+        }
+        else
         {
-            door.gameObject.SetActive(false);
+            // GOING TO INTERIOR: Set sprite masks to current interior shape (so that it appears through the camera cover)
+            if (_sprites.Length > _masks.Length)
+            {
+                Debug.LogError($"ERROR: Need more masks. Only have {_masks.Length} but need {_sprites.Length}");
+            }
+
+            for (int i = 0; i < _masks.Length; i++)
+            {
+                if (i < _sprites.Length)
+                {
+                    //Debug.Log($"Setting mask {i}");
+                    _masks[i].sprite = _sprites[i];
+                    _masks[i].transform.position = _positions[i]; //node.transform.TransformPoint(_positions[i]);
+                    _masks[i].transform.position = new Vector3(_masks[i].transform.position.x, _masks[i].transform.position.y, node.level * 10 + 2);
+
+                }
+                else
+                {
+                    _masks[i].sprite = null;
+                }
+            }
+
         }
 
-        foreach(InteriorBuildingDoor door in _interiorDoors)
+        // (2) Camera cover
+        if (node.level == 0)
         {
-            door.gameObject.SetActive(true);
+            // EXTERIOR: Deactivate camera cover
+            _cameraCover.SetActive(false);
+        }
+        else
+        {
+            // INTERIOR: Activate camera cover
+            _cameraCover.SetActive(true);
+        }
+
+        // (3) Camera
+        if (node.level == 0)
+        {
+            // EXTERIOR: Activate exterior virtual camera 
+            _exteriorCam.gameObject.SetActive(true);
+
+            // EXTERIOR: Set main camera Z position so that it's before the town level
+            _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, exteriorCamZ);
+            _cam.GetComponent<FollowCam>().enabled = false;
+        }
+        else
+        {
+            // INTERIOR: Inactivate exterior virtual camera so that we're just using the main camera (so we can control the Z position)
+            _exteriorCam.gameObject.SetActive(false);
+
+            //INTERIOR:  Set main camera Z position so that it's beyond the town level
+            _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, node.level * 10);
+            _cam.GetComponent<FollowCam>().enabled = true;
+
+        }
+
+        // (4) Player
+        if (node.level == 0)
+        {
+            // EXTERIOR: Move player so that they're beyond town level
+            _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, exteriorPlayerZ);
+            _player.gameObject.layer = LayerMask.NameToLayer($"Player");
+
+        }
+        else
+        {
+            // INTERIOR: Move player so that they're before town level
+            _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, (node.level + 1) * 10 - 1);
+            _player.gameObject.layer = LayerMask.NameToLayer($"Level{node.level}Player");
+
         }
     }
+    //public void TransitionToLevel(BuildingParent buildingParent, int level)
+    //{
+    //    Debug.Log($"Going to level {level}");
+    //    buildingParent.TransitionToLevel(level);
 
-    public void ToExterior()
-    {
-        Debug.Log("Going to exterior!");
 
-        // Set sprite mask to current interior shape (so that it appears through the camera cover)
-        for (int i = 0; i < _masks.Length; i++)
-        {
-            _masks[i].sprite = null;
-        }
+    //    _sprites = buildingParent.GetActiveSprites(); 
+    //    _positions = buildingParent.GetActivePositions();
 
-        // Deactivate camera cover
-        _cameraCover.SetActive(false);
 
-        // Activate exterior virtual camera 
-        _exteriorCam.gameObject.SetActive(true);
+    //    // (1) Set sprite masks 
 
-        // Set main camera Z position so that it's beyond the town level
-        _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, exteriorCamZ);
+    //    if (level == 0)
+    //    {
+    //        // EXTERIOR: Set sprite masks to null
+    //        for (int i = 0; i < _masks.Length; i++)
+    //        {
+    //            _masks[i].sprite = null;
+    //        }
+    //    }
+    //    else 
+    //    {
+    //        // INTERIOR: Set sprite masks to current interior shape (so that it appears through the camera cover)
+    //        if (_sprites.Length > _masks.Length)
+    //        {
+    //            Debug.LogError($"ERROR: Need more masks. Only have {_masks.Length} but need {_sprites.Length}");
+    //        }
 
-        // Move player so that they're beyond town level
-        _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, exteriorPlayerZ);
+    //        for (int i = 0; i < _masks.Length; i++)
+    //        {
+    //            if (i < _sprites.Length)
+    //            {
+    //                //Debug.Log($"Setting mask {i}");
+    //                _masks[i].sprite = _sprites[i];
+    //                _masks[i].transform.position = buildingParent.transform.TransformPoint(_positions[i]);
+    //                _masks[i].transform.position = new Vector3(_masks[i].transform.position.x, _masks[i].transform.position.y, level * 10 + 2);
 
-        // Deactivate interior collider walls
-        _currentInterior.DeactivateColliders();
+    //            }
+    //            else
+    //            {
+    //                _masks[i].sprite = null;
+    //            }
+    //        }
 
-        // Set doors
-        foreach (BuildingDoor door in _exteriorDoors)
-        {
-            door.gameObject.SetActive(true);
-        }
+    //    }
 
-        foreach (InteriorBuildingDoor door in _interiorDoors)
-        {
-            door.gameObject.SetActive(false);
-        }
-    }
+    //    // (2) Camera cover
+    //    if (level == 0)
+    //    {
+    //        // EXTERIOR: Deactivate camera cover
+    //        _cameraCover.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        // INTERIOR: Activate camera cover
+    //        _cameraCover.SetActive(true);
+    //    }
+
+    //    // (3) Camera
+    //    if (level == 0)
+    //    {
+    //        // EXTERIOR: Activate exterior virtual camera 
+    //        _exteriorCam.gameObject.SetActive(true);
+
+    //        // EXTERIOR: Set main camera Z position so that it's before the town level
+    //        _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, exteriorCamZ);
+    //        _cam.GetComponent<FollowCam>().enabled = false;
+    //    }
+    //    else
+    //    {
+    //        // INTERIOR: Inactivate exterior virtual camera so that we're just using the main camera (so we can control the Z position)
+    //        _exteriorCam.gameObject.SetActive(false);
+
+    //        //INTERIOR:  Set main camera Z position so that it's beyond the town level
+    //        _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, level * 10);
+    //        _cam.GetComponent<FollowCam>().enabled = true;
+
+    //    }
+
+    //    // (4) Player
+    //    if (level == 0)
+    //    {
+    //        // EXTERIOR: Move player so that they're beyond town level
+    //        _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, exteriorPlayerZ);
+    //    }
+    //    else
+    //    {
+    //        // INTERIOR: Move player so that they're before town level
+    //        _player.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, level * 10 + 1);
+    //    }
+    //}
 }

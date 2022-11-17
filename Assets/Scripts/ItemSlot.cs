@@ -23,16 +23,61 @@ public class ItemSlot : MonoBehaviour
         {
             _itemStack = value;
 
+            //if (_itemStack == null)
+            //{
+            //    Debug.Log($"Setting {gameObject.name} to null!");
+            //}
+
             if (_itemStack == null || _itemStack.item == null)
             {
                 //Debug.Log($"Setting {slotNumber} to null");
                 itemImage.color = disabledColor;
                 itemImage.sprite = null;
+                hundredths.color = disabledColor;
+                tens.color = disabledColor;
+                ones.color = disabledColor;
             }
             else
             {
                 itemImage.color = normalColor;
                 itemImage.sprite = _itemStack.item.Icon;
+                if (_itemStack.item.maxCount == 1)
+                {
+                    hundredths.color = disabledColor;
+                    tens.color = disabledColor;
+                    ones.color = disabledColor;
+                }
+                else
+                {
+                    hundredths.color = normalColor;
+
+                    ones.sprite = Resources.Load<Sprite>("Icons/count_" + _itemStack.count % 10);
+                    ones.color = normalColor;
+
+                    if (_itemStack.count >= 10)
+                    {
+                        tens.sprite = Resources.Load<Sprite>("Icons/count_" + Mathf.FloorToInt(_itemStack.count / 10) % 10);
+                        tens.color = normalColor;
+
+                        if (_itemStack.count >= 100)
+                        {
+                            hundredths.sprite = Resources.Load<Sprite>("Icons/count_" + Mathf.FloorToInt(_itemStack.count / 100) % 10);
+                            hundredths.color = normalColor;
+
+                        }
+                        else
+                        {
+                            hundredths.color = disabledColor;
+                        }
+
+                    }
+                    else
+                    {
+                        tens.color = disabledColor;
+                        hundredths.color = disabledColor;
+                    }
+                    hundredths.sprite = Resources.Load<Sprite>("Icons/itemslot_" + slotNumber);
+                }
             }
         }
     }
@@ -49,15 +94,65 @@ public class ItemSlot : MonoBehaviour
     private ItemStackPool _itemStackPool;
     private PlayerMovement _player;
 
+    // Count (bottom-right)
+
+    [SerializeField] Image hundredths;
+    [SerializeField] Image tens;
+    [SerializeField] Image ones;
+
+    public void UpdateCount()
+    {
+        if (_itemStack.item.maxCount == 1)
+        {
+            hundredths.color = disabledColor;
+            tens.color = disabledColor;
+            ones.color = disabledColor;
+        }
+        else
+        {
+            hundredths.color = normalColor;
+
+            ones.sprite = Resources.Load<Sprite>("Icons/count_" + _itemStack.count % 10);
+            ones.color = normalColor;
+
+            if (_itemStack.count >= 10)
+            {
+                tens.sprite = Resources.Load<Sprite>("Icons/count_" + Mathf.FloorToInt(_itemStack.count / 10) % 10);
+                tens.color = normalColor;
+
+                if (_itemStack.count >= 100)
+                {
+                    hundredths.sprite = Resources.Load<Sprite>("Icons/count_" + Mathf.FloorToInt(_itemStack.count / 100) % 10);
+                    hundredths.color = normalColor;
+
+                }
+                else
+                {
+                    hundredths.color = disabledColor;
+                }
+
+            }
+            else
+            {
+                tens.color = disabledColor;
+                hundredths.color = disabledColor;
+            }
+            hundredths.sprite = Resources.Load<Sprite>("Icons/itemslot_" + slotNumber);
+        }
+    }
+
     private void OnValidate()
     {
-        _itemStackPool = FindObjectOfType<ItemStackPool>();
-        _player = FindObjectOfType<PlayerMovement>();
+        //_itemStackPool = FindObjectOfType<ItemStackPool>();
+        //_player = FindObjectOfType<PlayerMovement>();
 
-        Image[] images = GetComponentsInChildren<Image>();
-        containerImage = images[0];
-        numberImage = images[1];
-        itemImage = images[2];
+        //Image[] images = GetComponentsInChildren<Image>();
+        //containerImage = images[0];
+        //numberImage = images[1];
+        //hundredths = images[2];
+        //tens = images[3];
+        //ones = images[4];
+        //itemImage = images[5];
 
         numberImage.sprite = Resources.Load<Sprite>("Icons/itemslot_" + slotNumber);
 

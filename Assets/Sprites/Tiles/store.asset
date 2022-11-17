@@ -15,6 +15,6 @@ MonoBehaviour:
   exteriorTile: {fileID: 0}
   interiorTile: {fileID: 0}
   exteriorTileObject: {fileID: 2508081085621199242, guid: 8314a3e1ee24741c3af23ac8a4d5f1e6, type: 3}
-  interiorTileObject: {fileID: 8564465633411899774, guid: 7536abe0e34ab4c39bee562eaf0968db, type: 3}
+  interiorTileObject: {fileID: 3397874524515728144, guid: 5b6e82fa83059460b9376b976ab08298, type: 3}
   width: 12
   height: 8

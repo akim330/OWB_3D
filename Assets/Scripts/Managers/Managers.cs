@@ -10,6 +10,10 @@ using UnityEngine;
 [RequireComponent(typeof(BuildingManager))]
 [RequireComponent(typeof(DialogueManager))]
 [RequireComponent(typeof(ExtIntManager))]
+[RequireComponent(typeof(TimeManager))]
+[RequireComponent(typeof(NPCManager))]
+[RequireComponent(typeof(BiomeManager))]
+[RequireComponent(typeof(MoneyManager))]
 
 public class Managers : MonoBehaviour
 {
@@ -23,6 +27,10 @@ public class Managers : MonoBehaviour
     public static BuildingManager Building;
     public static DialogueManager Dialogue;
     public static ExtIntManager ExtInt;
+    public static TimeManager Time;
+    public static NPCManager NPC;
+    public static BiomeManager Biome;
+    public static MoneyManager Money;
 
     void Awake()
     {
@@ -33,7 +41,11 @@ public class Managers : MonoBehaviour
         Palette = GetComponent<PaletteManager>();
         Building = GetComponent<BuildingManager>();
         Dialogue = GetComponent<DialogueManager>();
-        ExtInt = GetComponent<ExtIntManager>(); 
+        ExtInt = GetComponent<ExtIntManager>();
+        Time = GetComponent<TimeManager>();
+        NPC = GetComponent<NPCManager>();
+        Biome = GetComponent<BiomeManager>();
+        Money = GetComponent<MoneyManager>();
 
         // FILL #4: Add new manager
         _startSequence = new List<IGameManager>();
@@ -44,6 +56,10 @@ public class Managers : MonoBehaviour
         _startSequence.Add(Building);
         _startSequence.Add(Dialogue);
         _startSequence.Add(ExtInt);
+        _startSequence.Add(Time);
+        _startSequence.Add(NPC);
+        _startSequence.Add(Biome);
+        _startSequence.Add(Money);
 
         StartCoroutine(StartupManagers());
     }
@@ -75,7 +91,9 @@ public class Managers : MonoBehaviour
             }
 
             if (numReady > lastReady)
+            {
                 Debug.Log("Progress: " + numReady + "/" + numModules);
+            }
             yield return null;
         }
 

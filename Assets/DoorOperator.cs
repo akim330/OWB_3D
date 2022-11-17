@@ -8,6 +8,8 @@ public class DoorOperator : MonoBehaviour
 
     private GameObject interiorObject;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -15,33 +17,42 @@ public class DoorOperator : MonoBehaviour
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
 
-            Debug.Log($"Trying to open nearby doors");
-
             foreach (Collider2D collider in colliders)
             {
-                //Debug.Log(collider.name);
 
-                BuildingDoor exteriorDoor = collider.GetComponent<BuildingDoor>();
+                Door door = collider.GetComponent<Door>();
 
-                if (exteriorDoor != null)
+                if (door != null)
                 {
-                    Managers.ExtInt.ToInterior(exteriorDoor.buildingParent);
-                }
+                    string doorLayer = LayerMask.LayerToName(door.gameObject.layer);
+                    string playerLayer = LayerMask.LayerToName(gameObject.layer);
 
-                InteriorBuildingDoor interiorDoor = collider.GetComponent<InteriorBuildingDoor>();
-
-                if (interiorDoor != null)
-                {
-                    Debug.Log($"Found InteriorBuildingDoor");
-
-
-                    if (exteriorDoor != null)
+                    
+                    if (LayerMatch(playerLayer, doorLayer))
                     {
-                        Debug.LogError("Colliding with exterior door and interior door at the same time, which shouldn't happen!");
-                    }
+                        transform.position = door.GetComponent<BoxCollider2D>().bounds.center;
 
-                    Managers.ExtInt.ToExterior();
+                        //Debug.Log($"Door triggered: {door.gameObject.name} with layer {doorLayer}. Player has layer {playerLayer}");
+                        Managers.ExtInt.TransitionToNode(door.destinationNode);
+                        break;
+
+                    }
                 }
+
+                //InteriorBuildingDoor interiorDoor = collider.GetComponent<InteriorBuildingDoor>();
+
+                //if (interiorDoor != null)
+                //{
+                //    Debug.Log($"Found InteriorBuildingDoor");
+
+
+                //    if (exteriorDoor != null)
+                //    {
+                //        Debug.LogError("Colliding with exterior door and interior door at the same time, which shouldn't happen!");
+                //    }
+
+                //    Managers.ExtInt.ToExterior();
+                //}
 
                 //Vector3 direction = collider.transform.position - transform.position;
                 //if (Vector3.Dot(direction, transform.forward) > 0.5f)
@@ -51,5 +62,22 @@ public class DoorOperator : MonoBehaviour
             }
         }
 
+    }
+
+    private bool LayerMatch(string playerLayer, string doorLayer)
+    {
+        if (playerLayer == "Player" && doorLayer == "Default")
+        {
+            return true;
+        }
+        if (playerLayer == "Level1Player" && doorLayer == "Level1Colliders")
+        {
+            return true;
+        }
+        if (playerLayer == "Level2Player" && doorLayer == "Level2Colliders")
+        {
+            return true;
+        }
+        return false;
     }
 }

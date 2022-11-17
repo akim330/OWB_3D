@@ -1,13 +1,23 @@
 ﻿<Properties StartupConfiguration="{1BC857A2-31E0-AA02-6ADA-9CFF02DF6003}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/NPCAnimations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoneyManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/TownManager.cs" />
-      <File FileName="Assets/NPCs/BodyGenerator.cs" Line="14" Column="25" />
-      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="126" Column="6" />
-      <File FileName="Assets/NPC.cs" Line="37" Column="10" />
-      <File FileName="Assets/SpriteManager.cs" Line="7" Column="1" />
-      <File FileName="Assets/NPCAnimations.cs" Line="8" Column="22" />
-      <File FileName="Assets/Scripts/BuildingTile.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TerrainGeneration.cs" Line="160" Column="66" />
+      <File FileName="Assets/Scripts/Actions.cs" Line="9" Column="1" />
+      <File FileName="Assets/Scripts/Managers/TimeManager.cs" Line="95" Column="14" />
+      <File FileName="Assets/Shaders/MoneyCC.cs" Line="11" Column="6" />
+      <File FileName="Assets/Shaders/PersonColorChanger.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/PaletteManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/MonkColorChanger.cs" Line="20" Column="1" />
+      <File FileName="Assets/Shaders/RoomCC.cs" Line="11" Column="1" />
+      <File FileName="Assets/Shaders/SofaCC.cs" Line="26" Column="1" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="124" Column="10" />
+      <File FileName="Assets/SkySprite.cs" Line="54" Column="33" />
+      <File FileName="Assets/Scripts/Managers/BiomeManager.cs" Line="26" Column="1" />
+      <File FileName="Assets/Scripts/Managers/Managers.cs" Line="62" Column="1" />
+      <File FileName="Assets/Clock.cs" Line="17" Column="10" />
+      <File FileName="Assets/Scripts/MoneyTracker.cs" Line="40" Column="52" />
+      <File FileName="Assets/Scripts/ItemSlot.cs" Line="105" Column="1" />
+      <File FileName="Assets/Scripts/MoneyManager.cs" Line="5" Column="56" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,16 +26,11 @@
             <Node name="Assets" expanded="True">
               <Node name="NPCs" expanded="True" />
               <Node name="Scripts" expanded="True">
-                <Node name="Debug" expanded="True" />
-                <Node name="Devices" expanded="True" />
-                <Node name="ItemScripts" expanded="True">
-                  <Node name="Item Logic" expanded="True" />
-                  <Node name="Specific Items" expanded="True" />
-                </Node>
                 <Node name="Managers" expanded="True" />
-                <Node name="Player" expanded="True" />
+                <Node name="MoneyManager.cs" selected="True" />
               </Node>
-              <Node name="NPCAnimations.cs" selected="True" />
+              <Node name="Shaders" expanded="True" />
+              <Node name="Sprites" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -34,7 +39,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="044bf68e-7769-4882-96be-3e2b7836e1c6" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ee481497-662e-4c51-a21a-73b11d354268" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
