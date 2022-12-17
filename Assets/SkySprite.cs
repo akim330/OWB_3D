@@ -78,12 +78,12 @@ public class SkySprite : MonoBehaviour
             currentLandscape.sprite = night;
             nextLandscape.sprite = day;
 
-            Debug.Log($"1: {time.hour}, {currentAlpha}");
+            //Debug.Log($"1: {time.hour}, {currentAlpha}");
 
         }
         else if (time.hour >= startDay && time.hour < startDuskTransition)
         {
-            Debug.Log("2");
+            //Debug.Log("2");
 
             currentAlpha = 1;
             currentLandscape.sprite = day;
@@ -91,7 +91,7 @@ public class SkySprite : MonoBehaviour
         }
         else if (time.hour >= startDuskTransition && time.hour < startNightTransition)
         {
-            Debug.Log("3");
+            //Debug.Log("3");
 
             currentAlpha = ((startNightTransition - currentHour) / (startNightTransition - startDuskTransition));
             currentLandscape.sprite = day;
@@ -99,7 +99,7 @@ public class SkySprite : MonoBehaviour
         }
         else if (time.hour >= startNightTransition && time.hour < startNight)
         {
-            Debug.Log("4");
+            //Debug.Log("4");
 
             currentAlpha = ((startNight - currentHour) / (startNight - startNightTransition));
             currentLandscape.sprite = dusk;
@@ -107,7 +107,7 @@ public class SkySprite : MonoBehaviour
         }
         else if (time.hour >= startNight || time.hour < startDayTransition)
         {
-            Debug.Log("5");
+            //Debug.Log("5");
 
             currentAlpha = 1;
             currentLandscape.sprite = night;
@@ -115,7 +115,7 @@ public class SkySprite : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Hour {time.hour} didn't fall into a bucket");
+            //Debug.LogError($"Hour {time.hour} didn't fall into a bucket");
             currentAlpha = 1;
             currentLandscape.sprite = day;
             nextLandscape.sprite = null;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class BuildingPiece : ScriptableObject
 {
     public GameObject gameObject;
-    public int width;
-    public int height;
+    public int sizeX;
+    public int sizeY;
+    public int sizeZ;
 }

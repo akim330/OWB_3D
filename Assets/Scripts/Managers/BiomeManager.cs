@@ -22,8 +22,12 @@ public class BiomeManager : MonoBehaviour, IGameManager
     public void Startup()
     {
         DetermineBiome();
-        Actions.OnBiomeChanged(currentBiome);
 
+    }
+
+    public void Start()
+    {
+        Actions.OnBiomeChanged(currentBiome);
     }
 
     // Update is called once per frame

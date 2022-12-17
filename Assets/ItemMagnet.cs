@@ -6,16 +6,16 @@ public class ItemMagnet : MonoBehaviour
 {
     [SerializeField] private float radius;
 
-    private CircleCollider2D _collider;
+    private SphereCollider _collider;
 
     // Update is called once per frame
     void Start()
     {
-        _collider = GetComponent<CircleCollider2D>();
+        _collider = GetComponent<SphereCollider>();
         _collider.radius = radius;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Items"))
         {

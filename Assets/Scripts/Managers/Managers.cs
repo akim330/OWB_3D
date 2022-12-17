@@ -14,6 +14,7 @@ using UnityEngine;
 [RequireComponent(typeof(NPCManager))]
 [RequireComponent(typeof(BiomeManager))]
 [RequireComponent(typeof(MoneyManager))]
+[RequireComponent(typeof(InventoryManager))]
 
 public class Managers : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Managers : MonoBehaviour
     public static NPCManager NPC;
     public static BiomeManager Biome;
     public static MoneyManager Money;
+    public static InventoryManager Inventory;
 
     void Awake()
     {
@@ -46,20 +48,22 @@ public class Managers : MonoBehaviour
         NPC = GetComponent<NPCManager>();
         Biome = GetComponent<BiomeManager>();
         Money = GetComponent<MoneyManager>();
+        Inventory = GetComponent<InventoryManager>();
 
         // FILL #4: Add new manager
         _startSequence = new List<IGameManager>();
+        _startSequence.Add(Dialogue);
         _startSequence.Add(Item);
         _startSequence.Add(Cursor);
         _startSequence.Add(Town);
         _startSequence.Add(Palette);
         _startSequence.Add(Building);
-        _startSequence.Add(Dialogue);
         _startSequence.Add(ExtInt);
         _startSequence.Add(Time);
         _startSequence.Add(NPC);
         _startSequence.Add(Biome);
         _startSequence.Add(Money);
+        _startSequence.Add(Inventory);
 
         StartCoroutine(StartupManagers());
     }

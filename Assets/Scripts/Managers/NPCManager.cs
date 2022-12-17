@@ -62,46 +62,22 @@ public class NPCManager : MonoBehaviour, IGameManager
        
     }
 
-    public void PlaceNPCInNodeBlock(NPCRole role, BuildingNodeBlock nodeBlock)
+    public void PlaceNPCInBuilding(NPCRole role, Building building)
     {
-        Vector3 nodeWorldPosition = nodeBlock.transform.TransformPoint(new Vector3(2, 2, 0));
+        Vector3 buildingWorldPosition = building.transform.TransformPoint(new Vector3(0, 0, 0));
 
-        GameObject npcObj = Instantiate(basePersonPrefab, new Vector3(nodeWorldPosition.x, nodeWorldPosition.y, nodeWorldPosition.z - 1), Quaternion.Euler(Vector3.zero));
+        GameObject npcObj = Instantiate(basePersonPrefab, buildingWorldPosition, Quaternion.Euler(Vector3.zero));
+        //npcObj.transform.position = new Vector3(npcObj.transform.position.x, npcObj.transform.position.y, npcObj.transform.position.z - 10);
         npcObj.name = $"Person{nPeople.ToString()}";
         npcObj.SetActive(true);
-
-        // Set layer according to level of starting node
-        npcObj.layer = LayerMask.NameToLayer(Level2NPCLayer(nodeBlock.level));
-
 
         // Randomize NPC attributes
         NPC npc = npcObj.GetComponent<NPC>();
         RandomizeNPC(npc, role);
 
-        // Set NPC Movement variables
-        NPCMovement npcMovement = npcObj.GetComponent<NPCMovement>();
-        npcMovement.currentNode = nodeBlock.parentNode;
-        npcMovement.currentLevel = nodeBlock.level;
-
         nPeople++;
 
-        // Log NPC in Dialogue Manager
         Managers.Dialogue.LogNPCDialogue(npc);
-
-        //Debug.Log($"{npcObj.name} being placed in {nodeBlock.parentNode.ToString()} at {new Vector3(nodeWorldPosition.x, nodeWorldPosition.y, nodeWorldPosition.z - 1)}, ended up at {npcObj.transform.position}");
-
     }
 
-    //private void LogNPC()
-    //{
-    //    Managers.NPC.LogNPC(NPC npc);
-
-    //}
-
-    public void PlaceNPCInBuilding(BuildingTree building)
-    {
-
-
-        //LogNPC(npc);
-    }
 }

@@ -6,20 +6,32 @@ public class NPCDialogue : MonoBehaviour
 {
     private NPC npc;
 
+    private Dictionary<string, string> varDict;
+
     private void Awake()
     {
         npc = GetComponent<NPC>();
+
+        varDict = new Dictionary<string, string>();
+        varDict.Add("name", "Billy");
     }
 
-    public Dialogue GetDialogue()
+    public DialogueTree GetDialogue()
     {
-        if (npc.role == NPCRole.None)
-        {
-            return new Dialogue(new string[] { "Testing dialogue manager", "Is it working?" });
-        }
-        else
-        {
-            return new Dialogue(new string[] { $"Hello, I am {npc.role}", "Is it working?" });
-        }
+        DialogueTree tree = DialogueBank.instance.A1;
+        tree.FillRegex(varDict);
+        return tree;
     }
+
+    //public Dialogue GetDialogue()
+    //{
+    //    if (npc.role == NPCRole.None)
+    //    {
+    //        return new Dialogue(new string[] { "Testing dialogue manager", "Is it working?" });
+    //    }
+    //    else
+    //    {
+    //        return new Dialogue(new string[] { $"Hello, I am {npc.role}", "Is it working?" });
+    //    }
+    //}
 }

@@ -13,37 +13,53 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject stepRayLower;
     [SerializeField] private GameObject stepRayUpper;
 
-    private Rigidbody2D _rigidbody;
     private Animator _animator;
-    private BoxCollider2D _box;
+
+    private CapsuleCollider _capsule;
+    private Rigidbody _rigidbody;
+
+    //private BoxCollider2D _capsule;
+    //private Rigidbody2D _rigidbody;
 
     private bool grounded = false;
+
+    private bool frozen;
 
     [Header("Debugging")]
     [SerializeField] private bool infiniteJump;
 
     private void OnValidate()
     {
-        _box = GetComponent<BoxCollider2D>();
+        _capsule = GetComponent<CapsuleCollider>();
 
-        stepRayLower.transform.position = new Vector3(_box.bounds.max.x, _box.bounds.min.y, transform.position.z);
-        stepRayUpper.transform.position = new Vector3(_box.bounds.max.x, stepRayLower.transform.position.y + stepHeight, transform.position.z);
+        stepRayLower.transform.position = new Vector3(_capsule.bounds.max.x, _capsule.bounds.min.y, transform.position.z);
+        stepRayUpper.transform.position = new Vector3(_capsule.bounds.max.x, stepRayLower.transform.position.y + stepHeight, transform.position.z);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _box = GetComponent<BoxCollider2D>();
+        frozen = false;
 
-        stepRayLower.transform.position = new Vector3(_box.bounds.max.x, _box.bounds.min.y, transform.position.z);
-        stepRayUpper.transform.position = new Vector3(_box.bounds.max.x, stepRayLower.transform.position.y + stepHeight, transform.position.z);
+        _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
+        _capsule = GetComponent<CapsuleCollider>();
+
+        stepRayLower.transform.position = new Vector3(_capsule.bounds.max.x, _capsule.bounds.min.y, transform.position.z);
+        stepRayUpper.transform.position = new Vector3(_capsule.bounds.max.x, stepRayLower.transform.position.y + stepHeight, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (frozen)
+        {
+            _animator.SetFloat("speed", 0f);
+            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+
+            return;
+        }
+
         float currentSpeed;
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -67,8 +83,8 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
         }
 
-        Vector3 max = _box.bounds.max;
-        Vector3 min = _box.bounds.min;
+        Vector3 max = _capsule.bounds.max;
+        Vector3 min = _capsule.bounds.min;
         Vector2 corner1 = new Vector2(max.x, min.y - .1f);
         Vector2 corner2 = new Vector2(min.x, min.y - .2f);
         //Collider2D[] hits = Physics2D.OverlapAreaAll(corner1, corner2);
@@ -115,47 +131,47 @@ public class PlayerMovement : MonoBehaviour
 
         if ((infiniteJump || grounded) && Input.GetKeyDown(KeyCode.W))
         {
-            _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        if (deltaX != 0)
-        {
-            StepClimb();
-        }
+        //if (deltaX != 0)
+        //{
+        //    StepClimb();
+        //}
         
     }
 
-    private void StepClimb()
-    {
-        //Debug.Log("Checking step climb");
-        if (Physics2D.Raycast(stepRayLower.transform.position, transform.TransformDirection(transform.right) * transform.localScale.x, 0.1f))
-        {
-            //Debug.Log("Lower contact!");
-            if (!Physics2D.Raycast(stepRayUpper.transform.position, transform.TransformDirection(transform.right) * transform.localScale.x, 0.2f))
-            {
-                //Debug.Log("No upper contact!");
+    //private void StepClimb()
+    //{
+    //    //Debug.Log("Checking step climb");
+    //    if (Physics2D.Raycast(stepRayLower.transform.position, transform.TransformDirection(transform.right) * transform.localScale.x, 0.1f))
+    //    {
+    //        //Debug.Log("Lower contact!");
+    //        if (!Physics2D.Raycast(stepRayUpper.transform.position, transform.TransformDirection(transform.right) * transform.localScale.x, 0.2f))
+    //        {
+    //            //Debug.Log("No upper contact!");
 
-                _rigidbody.position += new Vector2(0, stepSmooth * Time.deltaTime);
-            }
-        }
-    }
+    //            _rigidbody.position += new Vector2(0, stepSmooth * Time.deltaTime);
+    //        }
+    //    }
+    //}
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    Debug.Log($"COLLISION: {collision.gameObject.name}");
     //}
 
-    private void OnCollisionStay2D(Collision2D col)
+    private void OnCollisionStay(Collision col)
     {
         if (col.contacts != null)
         {
-            //Debug.Log($"Length of contacts ({col.contacts.GetType()}): {col.contacts.Length}");
+            Debug.Log($"Length of contacts ({col.contacts.GetType()}): {col.contacts.Length}");
 
             bool foundGround = false;
 
-            foreach (ContactPoint2D contact in col.contacts)
+            foreach (ContactPoint contact in col.contacts)
             {
-                //Debug.Log($"Normal: {contact.normal.ToString()}, Dot: {Vector2.Dot(contact.normal, Vector2.up)}");
+                Debug.Log($"Normal: {contact.normal.ToString()}, Dot: {Vector2.Dot(contact.normal, Vector2.up)}");
                 if (Vector2.Dot(contact.normal, Vector2.up) > 0.8)
                 {
                     foundGround = true;
@@ -184,11 +200,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Contacts are null");
+            Debug.Log("Contacts are null");
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit(Collision collision)
     {
         grounded = false;
     }
@@ -209,5 +225,15 @@ public class PlayerMovement : MonoBehaviour
         //Gizmos.DrawCube(new Vector3((corner1.x + corner2.x) / 2, (corner1.y + corner2.y) / 2, 0),
         //    new Vector3(corner2.x - corner1.x, (corner1.y - corner2.y), 1)
         //    );
+    }
+
+    public void Freeze()
+    {
+        frozen = true;
+    }
+
+    public void Unfreeze()
+    {
+        frozen = false;
     }
 }

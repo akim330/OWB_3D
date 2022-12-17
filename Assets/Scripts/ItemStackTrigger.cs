@@ -52,12 +52,15 @@ public class ItemStackTrigger : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter(Collider collider)
     {
+        //Debug.Log($"Contacting {collider.gameObject.name}!");
+
         if (!justDropped)
         {
             if (collider.tag == "Player")
             {
+                //Debug.Log($"Contacting player!");
                 if (_inventory.AddItem(_itemStackObject.itemStack))
                 {
                     _pool.Reabsorb(_itemStackObject);

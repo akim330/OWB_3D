@@ -70,7 +70,7 @@ public class ItemStackPool : MonoBehaviour
         newObject.SetActive(true);
         newObject.transform.parent = null;
         newObject.transform.position = position;
-        newObject.GetComponent<Rigidbody2D>().AddForce(dropForce, ForceMode2D.Impulse);
+        newObject.GetComponent<Rigidbody>().AddForce(dropForce, ForceMode.Impulse);
 
         ItemStackObject itemStackObject = newObject.GetComponent<ItemStackObject>();
 

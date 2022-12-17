@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: -6465566751694194690, guid: 72cd69cb6ad69488e86323b966741de6, type: 3}
+  container: 0
 --- !u!1001 &312103370302245571
 PrefabInstance:
   m_ObjectHideFlags: 0

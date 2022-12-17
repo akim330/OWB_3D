@@ -2,64 +2,148 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingData
-{
-    public BuildingTree tree;
-    public int id;
-    public BuildingType type;
-    public Vector2 location;
-    public Vector2 doorLocation;
-    public int nFloors;
+//public class BuildingData
+//{
+//    public BuildingTree tree;
+//    public int id;
+//    public BuildingType type;
+//    public Vector2 location;
+//    public Vector2 doorLocation;
+//    public int nFloors;
 
-    public BuildingData(BuildingTree _tree, int _id, BuildingType _type, Vector2 _location, Vector2 _doorLocation, int _nFloors)
-    {
-        tree = _tree;
-        id = _id;
-        location = _location;
-        doorLocation = _doorLocation;
-        type = _type;
-        nFloors = _nFloors;
-    }
-}
+//    public BuildingData(BuildingTree _tree, int _id, BuildingType _type, Vector2 _location, Vector2 _doorLocation, int _nFloors)
+//    {
+//        tree = _tree;
+//        id = _id;
+//        location = _location;
+//        doorLocation = _doorLocation;
+//        type = _type;
+//        nFloors = _nFloors;
+//    }
+//}
 
 public class TownManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
-    //[SerializeField] GameObject[] peoplePrefabs;
-    //[SerializeField] GameObject basePersonPrefab;
-    //[SerializeField] AnimatorOverrideController[] npcOverrides;
+    [SerializeField] GameObject streetLampPrefab;
 
     private int _townStartX;
     private int _townEndX;
 
     //private int nPeople;
-
-    private List<BuildingData> buildingData;
-    private List<BuildingTree> buildingTrees;
-
     private int nBuildings;
 
     private List<NPCRole> npcRoles;
     private Queue<NPCRole> npcRolesQueue;
 
-    private List<BuildingNodeBlock> habitableBuildings;
+
+    private List<Building> buildingsList;
     private NPCRole[] rolesToAdd;
+
+    [SerializeField] GameObject townParent;
+
+    [SerializeField] TerrainGeneration terrainGeneration;
 
     public void Startup()
     {
         nBuildings = 0;
         //nPeople = 0;
 
-        habitableBuildings = new List<BuildingNodeBlock>();
-
-        buildingData = new List<BuildingData>();
-        buildingTrees = new List<BuildingTree>();
+        buildingsList = new List<Building>();
 
         rolesToAdd = new NPCRole[]
         {
             NPCRole.Lumberjack, NPCRole.Farmer, NPCRole.Blacksmith, NPCRole.Grocer
         };
+
+        terrainGeneration.Startup();
+    }
+
+    public void GenerateTown(out GameObject parent, out Vector3Int size)
+    {
+        parent = Instantiate(townParent, Vector3.zero, Quaternion.identity);
+        parent.name = $"Town";
+
+        int sizeX = 64;
+        int sizeZ = 32;
+        int spacing = 5;
+
+        GameObject currentInstantiatedObject;
+        Vector3Int currentSize;
+        int currentX = 0;
+        int maxZ = 0;
+        int maxY = 0;
+
+        void FormatTransform(GameObject obj, GameObject parent)
+        {
+            obj.transform.parent = parent.transform;
+            obj.transform.localPosition = new Vector3(currentX, 0, 0);
+            currentX += currentSize.x + spacing;
+
+            if (currentSize.y > maxY)
+            {
+                maxY = currentSize.y;
+            }
+            if (currentSize.z > maxZ)
+            {
+                maxZ = currentSize.z;
+            }
+        }
+
+        // Place mart
+        Managers.Building.GetMart(out currentInstantiatedObject, out currentSize);
+        RegisterGameObjectAsBuilding(currentInstantiatedObject);
+        FormatTransform(currentInstantiatedObject, parent);
+
+        // Place cafe
+        Managers.Building.GetCafe(out currentInstantiatedObject, out currentSize);
+        RegisterGameObjectAsBuilding(currentInstantiatedObject);
+        FormatTransform(currentInstantiatedObject, parent);
+
+        for (int i = 0; i < 2; i++)
+        {
+            // Place apartment
+            Managers.Building.GetApartment(1, 3, out currentInstantiatedObject, out currentSize);
+            RegisterGameObjectAsBuilding(currentInstantiatedObject);
+            FormatTransform(currentInstantiatedObject, parent);
+        }
+
+        size = new Vector3Int(currentX, maxY, maxZ);
+
+        // Place lamps
+
+        for (int x = -12; x < currentX; x += 12)
+        {
+            currentInstantiatedObject = Instantiate(streetLampPrefab, parent.transform, false);
+            currentInstantiatedObject.transform.position = new Vector3(x, 0, -12);
+        }
+
+        PopulateBuildingProperties();
+
+
+    }
+
+    private void PopulateBuildingProperties()
+    {
+        foreach (Building building in buildingsList)
+        {
+            // Debug.Log($"populating {building.gameObject.name}");
+            building.PopulateProperties();
+        }
+    }
+
+    private void RegisterGameObjectAsBuilding(GameObject obj)
+    {
+        Building building = obj.GetComponent<Building>();
+        if (building != null)
+        {
+            buildingsList.Add(building);
+        }
+        else
+        {
+            Debug.LogError($"This gameobject {obj.name} doesn't have a Building component!");
+        }
     }
 
     public void SetTownCoordinates(int startX, int endX)
@@ -70,7 +154,7 @@ public class TownManager : MonoBehaviour, IGameManager
 
     private void RandomizeNPCRoles()
     {
-        int nRoles = habitableBuildings.Count;
+        int nRoles = buildingsList.Count;
 
         npcRoles = new List<NPCRole>();
 
@@ -102,22 +186,22 @@ public class TownManager : MonoBehaviour, IGameManager
             RandomizeNPCRoles();
         }
 
-        foreach(BuildingNodeBlock building in habitableBuildings)
+        foreach(Building building in buildingsList)
         {
-            Managers.NPC.PlaceNPCInNodeBlock(npcRolesQueue.Dequeue(), building);
+            Managers.NPC.PlaceNPCInBuilding(npcRolesQueue.Dequeue(), building);
         }
     }
 
-    public void LogHabitableBlocks(BuildingTree tree)
-    {
-        foreach (BuildingNodeBlock block in tree.GetComponentsInChildren<BuildingNodeBlock>())
-        {
-            if (block.habitable)
-            {
-                habitableBuildings.Add(block);
-            }
-        }
-    }
+    //public void LogHabitableBlocks(BuildingTree tree)
+    //{
+    //    foreach (BuildingNodeBlock block in tree.GetComponentsInChildren<BuildingNodeBlock>())
+    //    {
+    //        if (block.habitable)
+    //        {
+    //            habitableBuildings.Add(block);
+    //        }
+    //    }
+    //}
 
     //public void PlacePeopleOutside()
     //{
@@ -149,31 +233,37 @@ public class TownManager : MonoBehaviour, IGameManager
     //    }
     //}
 
-    public void LogBuilding(BuildingTree building)
-    {
-        buildingTrees.Add(building);
+    //public void LogBuilding(BuildingTree building)
+    //{
+    //    buildingTrees.Add(building);
 
-        // TODO: Add building data
-        buildingData.Add(new BuildingData(
-            _tree: building,
-            _id: nBuildings,
-            _type: building.type,
-            _location: building.transform.position,
-            _doorLocation: building.GetGroundDoorLocation(),
-            _nFloors: building.nFloors
-        ));
+    //    // TODO: Add building data
+    //    buildingData.Add(new BuildingData(
+    //        _tree: building,
+    //        _id: nBuildings,
+    //        _type: building.type,
+    //        _location: building.transform.position,
+    //        _doorLocation: building.GetGroundDoorLocation(),
+    //        _nFloors: building.nFloors
+    //    ));
 
-        nBuildings++;
-    }
+    //    nBuildings++;
+    //}
 
-    public Vector2 GetRandomBuildingLocation()
-    {
-        return buildingData[Random.Range(0, buildingData.Count)].doorLocation;
-    }
+    //public Vector2 GetRandomBuildingLocation()
+    //{
+    //    return buildingData[Random.Range(0, buildingData.Count)].doorLocation;
+    //}
 
     public NPCLandmark GetRandomLandmark()
     {
-        return buildingTrees[Random.Range(0, buildingTrees.Count)].GetRandomLandmark();
+        NPCLandmark chosen = null;
+        while (chosen == null)
+        {
+            chosen = buildingsList[Random.Range(0, buildingsList.Count)].GetRandomLandmark();
+
+        }
+        return chosen;
     }
 
 

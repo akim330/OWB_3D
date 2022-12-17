@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     private Animator _animator;
 
     private NPCDialogue _dialogue;
+    private NPCInventory _inventory;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,7 +23,9 @@ public class NPC : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _dialogue = GetComponent<NPCDialogue>();
-        Debug.Log($"Getting dialogue: Is it null? {_dialogue == null}");
+        //Debug.Log($"Getting dialogue: Is it null? {_dialogue == null}");
+
+        _inventory = GetComponent<NPCInventory>();
 
         speed = 10f;
     }
@@ -30,5 +33,10 @@ public class NPC : MonoBehaviour
     public NPCDialogue GetDialogue()
     {
         return _dialogue;
+    }
+
+    public NPCInventory GetInventory()
+    {
+        return _inventory;
     }
 }

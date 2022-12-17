@@ -164,6 +164,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1342860062719340287, guid: cde751064e2d54d97ba7030eeb9d1345, type: 3}
   m_PrefabInstance: {fileID: 5429574645717630324}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &7689269557032730005
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483905020126729099}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 6.4847107, y: 2.5296566}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.03125, y: 0.03125}
+    oldSize: {x: 16, y: 16}
+    newSize: {x: 16, y: 16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 13.475531, y: 5.5654235}
+  m_EdgeRadius: 0
 --- !u!114 &7322557075677883563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,5 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e76d6eb743f84374af2e80fff06825d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  habitable: 0
   level: 0
   parentNode: {fileID: 0}

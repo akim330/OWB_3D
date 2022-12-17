@@ -15,6 +15,8 @@ public class DialogueInitiator : MonoBehaviour
     private DialoguePartner currentTalking;
     private bool inConvo;
 
+    [SerializeField] private PlayerMovement _movement;
+
     // Debug
     private bool debug;
     private StringBuilder sb;
@@ -31,6 +33,7 @@ public class DialogueInitiator : MonoBehaviour
         sb = new StringBuilder();
 
         inConvo = false;
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,7 +46,6 @@ public class DialogueInitiator : MonoBehaviour
         {
             other.HideTalkableBubble();
             currentDialogueBoxes.Remove(other);
-            //UpdateClosest();
         }
     }
 
@@ -140,28 +142,31 @@ public class DialogueInitiator : MonoBehaviour
             else if (currentTalking == null)
             {
                 Managers.Dialogue.StartConversation(this, closestDialogue);
+                // [INK] closestDialogue.OnStartConversation(this);
+
                 currentTalking = closestDialogue;
                 inConvo = true;
 
-                //closestDialogue.StartConversation(this);
-                //currentTalking = closestDialogue;
             }
             else
             {
                 Managers.Dialogue.ProgressConversation();
+                // [INK] Managers.Dialogue.ProgressInkConversation();
             }
         }
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.DrawWireCube(_collider.bounds.center, _collider.bounds.size);
-    //}
+    public void OnStartConversation()
+    {
+        _movement.Freeze();
+    }
 
     public void OnConversationEnd()
     {
         currentTalking = null;
         inConvo = false;
+
+        _movement.Unfreeze();
     }
 
 }

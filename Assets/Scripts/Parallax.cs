@@ -14,7 +14,8 @@ public class Parallax : MonoBehaviour
     private SpriteRenderer skyRenderer;
     [SerializeField] private Transform undergroundTransform;
     private SpriteRenderer undergroundRenderer;
-    
+
+    // Number of tiles side-by-side in the background image
     [SerializeField] private int nHorizontalCycles;
     [SerializeField] private int skyCycles;
     [SerializeField] private int undergroundCycles;
@@ -41,8 +42,9 @@ public class Parallax : MonoBehaviour
         skyHeight = skyRenderer.bounds.size.y;
 
         undergroundLength = undergroundRenderer.bounds.size.x;
-        undergroundHeight = undergroundRenderer.bounds.size.y;        horizontalCycleLength = (float) length / nHorizontalCycles;
-        //Debug.Log($"Horizontal cycle length: {horizontalCycleLength}");
+        undergroundHeight = undergroundRenderer.bounds.size.y;        // horizontalCycleLength: length of one tile in the background landscape        horizontalCycleLength = (float) length / nHorizontalCycles;
+
+        // 
         skyCycleLength = skyHeight / skyCycles;
         undergroundCycleLength = undergroundHeight / undergroundCycles;
 

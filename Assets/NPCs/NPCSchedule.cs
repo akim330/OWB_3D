@@ -8,17 +8,12 @@ using System;
 public class NPCSchedule : MonoBehaviour
 {
     private Dictionary<Tuple<int, int>, NPCLandmark> schedule;
-    private NPCMovement movement;
+    private NPCNavigation navigation;
 
     private void Start()
     {
-        movement = GetComponent<NPCMovement>();
+        navigation = GetComponent<NPCNavigation>();
         schedule = new Dictionary<Tuple<int, int>, NPCLandmark>();
-
-        //ClockTime test1 = new ClockTime() { hour = 6, minute = 1 };
-        //ClockTime test2 = new ClockTime() { hour = 6, minute = 1 };
-
-        //Debug.Log($"TEST: {test1 == test2}");
 
         RandomizeSchedule(10);
     }
@@ -44,7 +39,7 @@ public class NPCSchedule : MonoBehaviour
             try
             {
                 schedule.Add(new Tuple<int, int>(time.hour, time.minute), landmark);
-                sb.Append($"{time.ToString()}: {landmark.ToString()}\n");
+                sb.Append($"{time.ToString()}: {landmark.ToString()} at {landmark.transform.position}\n");
             }
             catch (ArgumentException)
             {
@@ -75,11 +70,14 @@ public class NPCSchedule : MonoBehaviour
         {
             if (pair.Key.Item1 == time.hour && pair.Key.Item2 == time.minute)
             {
-                //Debug.Log($"{gameObject.name}'s schedule contains {time.ToString()}");
                 NPCLandmark landmark = schedule[pair.Key];
 
-                movement.SetLandmarkDestination(landmark);
+                Debug.Log($"{gameObject.name} {time.ToString()}: going to {landmark.ToString()} which is at {landmark.transform.position}");
+
+                navigation.SetLandmarkDestination(landmark);
             }
         }
     }
+
+
 }

@@ -19,8 +19,8 @@ public class ItemStackObject : MonoBehaviour
     public int count;
 
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private PolygonCollider2D _trigger;
-    [SerializeField] private PolygonCollider2D _collider;
+    [SerializeField] private CapsuleCollider _trigger;
+    [SerializeField] private CapsuleCollider _collider;
 
     [Header("Magnet")]
     private bool flying;
@@ -29,7 +29,7 @@ public class ItemStackObject : MonoBehaviour
 
     private float originalGravity;
 
-    private Rigidbody2D _body;
+    private Rigidbody _body;
 
     private float magnetCoolDown = 5f;
     private float timer;
@@ -39,15 +39,14 @@ public class ItemStackObject : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
 
-        PolygonCollider2D[] colliders = GetComponentsInChildren<PolygonCollider2D>();
+        CapsuleCollider[] colliders = GetComponentsInChildren<CapsuleCollider>();
         _trigger = colliders[0];
         _collider = colliders[1];
     }
 
     private void Start()
     {
-        _body = GetComponent<Rigidbody2D>();
-        originalGravity = _body.gravityScale;
+        _body = GetComponent<Rigidbody>();
 
         flying = false;
         UpdateItem();
@@ -69,8 +68,24 @@ public class ItemStackObject : MonoBehaviour
             _trigger.enabled = true;
 
             _renderer.sprite = _itemStack.item.Icon;
-            _collider.points = _itemStack.item.collider.points;
-            _trigger.points = _itemStack.item.collider.points;
+
+            _trigger.center = _itemStack.item.collider.center;
+            _trigger.direction = _itemStack.item.collider.direction;
+            _trigger.height = _itemStack.item.collider.height;
+            _trigger.radius = _itemStack.item.collider.radius;
+            _trigger.transform.rotation = _itemStack.item.collider.transform.rotation;
+            _trigger.transform.localPosition = _itemStack.item.collider.transform.localPosition;
+
+
+            _collider.center = _itemStack.item.collider.center;
+            _collider.direction = _itemStack.item.collider.direction;
+            _collider.height = _itemStack.item.collider.height;
+            _collider.radius = _itemStack.item.collider.radius;
+            _collider.transform.rotation = _itemStack.item.collider.transform.rotation;
+            _collider.transform.localPosition = _itemStack.item.collider.transform.localPosition;
+
+            //_collider.points = _itemStack.item.collider.points;
+            //_trigger.points = _itemStack.item.collider.points;
         }
 
     }
@@ -80,9 +95,9 @@ public class ItemStackObject : MonoBehaviour
         if (!inMagnetCoolDown)
         {
             flying = true;
-            _body.gravityScale = 0;
-            _body.velocity = Vector2.zero;
-            _body.angularVelocity = 0;
+            _body.useGravity = false;
+            _body.velocity = Vector3.zero;
+            _body.angularVelocity = Vector3.zero;
             flyingTarget = target;
 
         }
@@ -112,7 +127,7 @@ public class ItemStackObject : MonoBehaviour
     public void Reset()
     {
         flying = false;
-        _body.gravityScale = originalGravity;
+        _body.useGravity = true;
         flyingTarget = null;
         itemStack = null;
     }

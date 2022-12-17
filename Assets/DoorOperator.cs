@@ -15,28 +15,16 @@ public class DoorOperator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
-            foreach (Collider2D collider in colliders)
+            foreach (Collider collider in colliders)
             {
-
-                Door door = collider.GetComponent<Door>();
+                Door3D door = collider.GetComponent<Door3D>();
 
                 if (door != null)
                 {
-                    string doorLayer = LayerMask.LayerToName(door.gameObject.layer);
-                    string playerLayer = LayerMask.LayerToName(gameObject.layer);
-
+                    door.Operate();
                     
-                    if (LayerMatch(playerLayer, doorLayer))
-                    {
-                        transform.position = door.GetComponent<BoxCollider2D>().bounds.center;
-
-                        //Debug.Log($"Door triggered: {door.gameObject.name} with layer {doorLayer}. Player has layer {playerLayer}");
-                        Managers.ExtInt.TransitionToNode(door.destinationNode);
-                        break;
-
-                    }
                 }
 
                 //InteriorBuildingDoor interiorDoor = collider.GetComponent<InteriorBuildingDoor>();

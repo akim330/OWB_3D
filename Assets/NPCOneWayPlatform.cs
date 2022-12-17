@@ -11,7 +11,7 @@ public class NPCOneWayPlatform : MonoBehaviour
     {
         if (currentOneWayPlatform != null)
         {
-            Debug.Log($"{gameObject.name}: DROPPING!");
+            //Debug.Log($"{gameObject.name}: DROPPING!");
             StartCoroutine(DisableCollision());
         }
     }

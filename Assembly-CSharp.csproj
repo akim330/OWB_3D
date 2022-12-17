@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1BC857A2-31E0-AA02-6ADA-9CFF02DF6003}</ProjectGuid>
+    <ProjectGuid>{FA94DAEB-6863-E249-3D57-31E01923C76E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,30 +57,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/NPCLandmark.cs" />
+    <Compile Include="Assets/Scripts/MoneyManager.cs" />
     <Compile Include="Assets/Scripts/Devices/OperableDevice.cs" />
     <Compile Include="Assets/Scripts/Debug/DisplayFPS.cs" />
     <Compile Include="Assets/Scripts/DontMove.cs" />
     <Compile Include="Assets/ItemMagnet.cs" />
+    <Compile Include="Assets/Shaders/Tilt3D.cs" />
     <Compile Include="Assets/Scripts/Inventory.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_LevelParent.cs" />
+    <Compile Include="Assets/Scripts/DissolveWalls.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Item Logic/UseableItem.cs" />
+    <Compile Include="Assets/Scripts/Terrain/TerrainGeneration.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
+    <Compile Include="Assets/NavMeshComponents/Scripts/NavMeshModifierVolume.cs" />
     <Compile Include="Assets/Scripts/Managers/NPCManager.cs" />
-    <Compile Include="Assets/Scripts/Defunct/X_TerrainGeneration.cs" />
-    <Compile Include="Assets/Scripts/TerrainGeneration.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/Scripts/WeaponParent.cs" />
     <Compile Include="Assets/Shaders/RoomCC.cs" />
+    <Compile Include="Assets/Scripts/DoorMeshLink.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
+    <Compile Include="Assets/NavMeshComponents/Scripts/NavMeshLink.cs" />
+    <Compile Include="Assets/Dialogue/ChoiceDialogueNode.cs" />
+    <Compile Include="Assets/BuildingLevel.cs" />
     <Compile Include="Assets/Scripts/ItemStackPool.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
     <Compile Include="Assets/DialogueBox.cs" />
+    <Compile Include="Assets/ItemCollider.cs" />
     <Compile Include="Assets/Platform.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/DialogueInitiatorOLD.cs" />
     <Compile Include="Assets/Scripts/CustomArrayExtensions.cs" />
+    <Compile Include="Assets/NavMeshComponents/Scripts/NavMeshModifier.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_InteriorParent.cs" />
+    <Compile Include="Assets/Scripts/GroundDetector.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" />
@@ -88,69 +96,86 @@
     <Compile Include="Assets/NPCs/BodyGenerator.cs" />
     <Compile Include="Assets/Helper.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerMovement.cs" />
+    <Compile Include="Assets/NavMeshComponents/Scripts/NavMeshSurface.cs" />
     <Compile Include="Assets/Shaders/PersonColorChanger.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_BuildingDoor.cs" />
+    <Compile Include="Assets/RelativeMovement.cs" />
     <Compile Include="Assets/Scripts/MineableObject.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />
     <Compile Include="Assets/PixelGrid.cs" />
-    <Compile Include="Assets/Door.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_ExteriorParent.cs" />
     <Compile Include="Assets/DialogueBoxOLD.cs" />
     <Compile Include="Assets/NPCAnimations.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" />
+    <Compile Include="Assets/Store/CartItemSlot.cs" />
+    <Compile Include="Assets/Door3D.cs" />
+    <Compile Include="Assets/Scripts/Terrain/TownParent.cs" />
     <Compile Include="Assets/Shaders/MonkColorChanger.cs" />
     <Compile Include="Assets/Scripts/ChoppableObject.cs" />
-    <Compile Include="Assets/Scripts/Managers/BuildingManager.cs" />
+    <Compile Include="Assets/Scripts/SpriteSort.cs" />
+    <Compile Include="Assets/Shaders/MoneyCC.cs" />
     <Compile Include="Assets/TileMapDebug.cs" />
     <Compile Include="Assets/NPCOneWayPlatform.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Item Logic/Item.cs" />
+    <Compile Include="Assets/Store/StorePanel.cs" />
+    <Compile Include="Assets/MultilevelBuilding.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
+    <Compile Include="Assets/Scripts/Managers/ExtIntManager_OLD.cs" />
     <Compile Include="Assets/SpriteManager.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_BuildingParent.cs" />
     <Compile Include="Assets/DoorOperator.cs" />
     <Compile Include="Assets/Scripts/FollowCam.cs" />
     <Compile Include="Assets/NPCDialogue.cs" />
-    <Compile Include="Assets/NPCs/NPCMovement.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/Scripts/Managers/TownManager.cs" />
+    <Compile Include="Assets/InteriorCam.cs" />
     <Compile Include="Assets/Scripts/Debug/PaletteDisplay.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Item Logic/CursorItem.cs" />
     <Compile Include="Assets/Scripts/Managers/ManagerStatus.cs" />
-    <Compile Include="Assets/InteriorBuildingNode.cs" />
     <Compile Include="Assets/Scripts/ItemStack.cs" />
+    <Compile Include="Assets/Scripts/MoneyTracker.cs" />
     <Compile Include="Assets/NPCs/NPCSchedule.cs" />
+    <Compile Include="Assets/Scripts/Managers/PaletteManager.cs" />
+    <Compile Include="Assets/Dialogue/StaticDialogueNode.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
+    <Compile Include="Assets/Scripts/Managers/BiomeManager.cs" />
     <Compile Include="Assets/ItemStackObject.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" />
+    <Compile Include="Assets/Building.cs" />
     <Compile Include="Assets/DialogueInitiator.cs" />
-    <Compile Include="Assets/BuildingGenerator.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Specific Items/Axe.cs" />
-    <Compile Include="Assets/Scripts/OutwardDoor.cs" />
+    <Compile Include="Assets/Scripts/NPCMovement.cs" />
+    <Compile Include="Assets/Scripts/Tilt45.cs" />
+    <Compile Include="Assets/OrbitCamera.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" />
     <Compile Include="Assets/Scripts/Managers/DialogueManager.cs" />
-    <Compile Include="Assets/Scripts/Managers/x_BuildingManager.cs" />
-    <Compile Include="Assets/BuildingNode.cs" />
+    <Compile Include="Assets/Consequence.cs" />
+    <Compile Include="Assets/Dialogue/DialogueNode.cs" />
     <Compile Include="Assets/Scripts/Managers/CursorManager.cs" />
     <Compile Include="Assets/BuildingPiece.cs" />
-    <Compile Include="Assets/BuildingTree.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
     <Compile Include="Assets/InteriorColliderParent.cs" />
+    <Compile Include="Assets/Scripts/TestNav.cs" />
+    <Compile Include="Assets/Scripts/Managers/InventoryManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
+    <Compile Include="Assets/Store/NPCInventory.cs" />
+    <Compile Include="Assets/NPCs/AgentLinkMover.cs" />
     <Compile Include="Assets/Scripts/ItemPool.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets/Scripts/GroundGeneration.cs" />
+    <Compile Include="Assets/Store/StoreController.cs" />
     <Compile Include="Assets/Clock.cs" />
-    <Compile Include="Assets/BuildingNodeBlock.cs" />
+    <Compile Include="Assets/Scripts/BedAngles.cs" />
+    <Compile Include="Assets/Dialogue/ChoiceBox.cs" />
     <Compile Include="Assets/DialoguePartner.cs" />
     <Compile Include="Assets/NPC.cs" />
     <Compile Include="Assets/CameraFollow.cs" />
     <Compile Include="Assets/Scripts/ItemPrefabLabel.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
+    <Compile Include="Assets/Dialogue/DialogueBank.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
     <Compile Include="Assets/Scripts/Actions.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
@@ -160,47 +185,53 @@
     <Compile Include="Assets/Shaders/SofaCC.cs" />
     <Compile Include="Assets/Scripts/ShaderReplacer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
+    <Compile Include="Assets/NPCNavigation.cs" />
     <Compile Include="Assets/Shaders/ColorChanger.cs" />
+    <Compile Include="Assets/Scripts/Managers/BuildingManager.cs" />
+    <Compile Include="Assets/SkySprite.cs" />
     <Compile Include="Assets/Scripts/ItemMimic.cs" />
+    <Compile Include="Assets/Store/StoreSlot.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
+    <Compile Include="Assets/Background.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
     <Compile Include="Assets/Scripts/Managers/Managers.cs" />
+    <Compile Include="Assets/Dialogue/DialogueTree.cs" />
     <Compile Include="Assets/Scripts/Parallax.cs" />
     <Compile Include="Assets/Scripts/ItemSlot.cs" />
     <Compile Include="Assets/Scripts/Managers/ExtIntManager.cs" />
+    <Compile Include="Assets/Scripts/StationaryAfter2Seconds.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
+    <Compile Include="Assets/Scripts/Navigation/NavMeshRuntime.cs" />
+    <Compile Include="Assets/Store/TradeButton.cs" />
     <Compile Include="Assets/Scripts/Player/DeviceOperator.cs" />
-    <Compile Include="Assets/Scripts/InwardDoor.cs" />
     <Compile Include="Assets/Scripts/Managers/ItemManager.cs" />
     <Compile Include="Assets/Scripts/Devices/X_Door.cs" />
     <Compile Include="Assets/Scripts/Managers/IGameManager.cs" />
     <Compile Include="Assets/PlayerOneWayPlatform.cs" />
     <Compile Include="Assets/Scripts/ItemStackTrigger.cs" />
-    <Compile Include="Assets/Scripts/Defunct/x_BuildingTile.cs" />
+    <Compile Include="Assets/Scripts/Wall.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
     <Compile Include="Assets/Scripts/Player/ItemUser.cs" />
-    <Compile Include="Assets/Scripts/BedAngles.cs" />
-    <Compile Include="Assets/SkySprite.cs" />
-    <Compile Include="Assets/Shaders/MoneyCC.cs" />
-    <Compile Include="Assets/Scripts/Managers/BiomeManager.cs" />
-    <Compile Include="Assets/Scripts/Managers/PaletteManager.cs" />
-    <Compile Include="Assets/Scripts/MoneyTracker.cs" />
-    <Compile Include="Assets/Scripts/MoneyManager.cs" />
+    <Compile Include="Assets/RotationalAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets/Shaders/SpriteSort/UnlitMetaPass.hlsl" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Oswald-Bold - OFL.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Anton OFL.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets/Shaders/SpriteSort/DepthOnlyPass.hlsl" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
+    <None Include="Assets/Shaders/SpriteSort/SurfaceInput.hlsl" />
     <None Include="Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets/Shaders/SpriteSort/UnlitSprite.shader" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
@@ -209,6 +240,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
     <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
+    <None Include="Assets/Shaders/SpriteSort/UnlitInput.hlsl" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Bangers - OFL.txt" />
@@ -882,9 +914,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>

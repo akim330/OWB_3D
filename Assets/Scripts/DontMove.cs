@@ -6,15 +6,15 @@ public class DontMove : MonoBehaviour
 {
     [SerializeField] string ignoreTag;
 
-    private Rigidbody2D _body;
+    private Rigidbody _body;
     private Vector3 position, velocity;
-    private float angularVelocity;
+    private Vector3 angularVelocity;
     private bool isColliding;
 
     // Start is called before the first frame update
     void Start()
     {
-        _body = GetComponent<Rigidbody2D>();
+        _body = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()

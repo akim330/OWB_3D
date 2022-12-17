@@ -24,7 +24,7 @@ public class ChoppableObject : MonoBehaviour
 
     private TreeState state;
 
-    private BoxCollider2D _collider;
+    private CapsuleCollider _collider;
 
     private void OnValidate()
     {
@@ -34,7 +34,7 @@ public class ChoppableObject : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<CapsuleCollider>();
         state = TreeState.Upright;
     }
 
@@ -113,7 +113,7 @@ public class ChoppableObject : MonoBehaviour
         {
 
 
-            Vector2 position = new Vector2(_collider.bounds.min.x + _collider.size.y / nLogs * i, _collider.bounds.max.y);
+            Vector2 position = new Vector3(_collider.bounds.min.x + _collider.height / nLogs * i, _collider.bounds.max.y, _collider.transform.position.z);
             //Debug.Log($"Log position: {position}");
             _pool.DropItem(log, 1, position, DropStyle.Loot, 1);
         }

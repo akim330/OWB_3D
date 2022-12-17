@@ -12,12 +12,12 @@ public class Item : ScriptableObject
 
     [SerializeField] private GameObject prefab;
 
-    [System.NonSerialized] public PolygonCollider2D collider;
+    [System.NonSerialized] public CapsuleCollider collider;
 
     private void OnValidate()
     {
         Icon = Resources.Load<Sprite>("Icons/" + itemName);
         prefab = Resources.Load ("Prefabs/" + itemName) as GameObject;
-        collider = prefab.GetComponent<PolygonCollider2D>();
+        collider = prefab.GetComponentInChildren<CapsuleCollider>();
     }
 }
