@@ -39,7 +39,7 @@ public class RotationalAnimation : MonoBehaviour
 
         //int n = Mathf.FloorToInt(angle / (360f / (nSprites - 1)));
         int n = Mathf.FloorToInt(_cam.transform.eulerAngles.y / (360f / (nSprites - 1)));
-        Debug.Log($"angle: {angle}, nSprites: {nSprites}, n: {n}");
+        //Debug.Log($"angle: {angle}, nSprites: {nSprites}, n: {n}");
         _renderer.sprite = sprites[n];
     }
 }

@@ -72,7 +72,7 @@ public class NPCSchedule : MonoBehaviour
             {
                 NPCLandmark landmark = schedule[pair.Key];
 
-                Debug.Log($"{gameObject.name} {time.ToString()}: going to {landmark.ToString()} which is at {landmark.transform.position}");
+                //Debug.Log($"{gameObject.name} {time.ToString()}: going to {landmark.ToString()} which is at {landmark.transform.position}");
 
                 navigation.SetLandmarkDestination(landmark);
             }

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FA94DAEB-6863-E249-3D57-31E01923C76E}</ProjectGuid>
+    <ProjectGuid>{476AEC9E-87C2-9F21-741D-69B183362AEF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/NPCLandmark.cs" />
+    <Compile Include="Assets/RotationalAnimation.cs" />
     <Compile Include="Assets/Scripts/MoneyManager.cs" />
     <Compile Include="Assets/Scripts/Devices/OperableDevice.cs" />
     <Compile Include="Assets/Scripts/Debug/DisplayFPS.cs" />
@@ -212,7 +213,7 @@
     <Compile Include="Assets/Scripts/Wall.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
     <Compile Include="Assets/Scripts/Player/ItemUser.cs" />
-    <Compile Include="Assets/RotationalAnimation.cs" />
+    <Compile Include="Assets/Scripts/Fox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
