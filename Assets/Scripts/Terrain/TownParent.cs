@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TownParent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Building[] buildings;
+
+    public void LogBuildings()
     {
-        
+        buildings = GetComponentsInChildren<Building>();
+
+        foreach (Building building in buildings)
+        {
+            Managers.Town.RegisterGameObjectAsBuilding(building.gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

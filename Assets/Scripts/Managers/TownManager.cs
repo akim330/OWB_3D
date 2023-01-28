@@ -133,7 +133,7 @@ public class TownManager : MonoBehaviour, IGameManager
         }
     }
 
-    private void RegisterGameObjectAsBuilding(GameObject obj)
+    public void RegisterGameObjectAsBuilding(GameObject obj)
     {
         Building building = obj.GetComponent<Building>();
         if (building != null)

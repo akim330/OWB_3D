@@ -44,6 +44,8 @@ public class TerrainGeneration : MonoBehaviour
     [Header("NavMesh")]
     [SerializeField] private NavMeshRuntime _mesh;
 
+    private TownParent townParent;
+
 
     //private CompositeCollider2D _collider;
 
@@ -72,9 +74,11 @@ public class TerrainGeneration : MonoBehaviour
 
         // Regenerate Perlin noise parameters
 
-        GenerateTerrain();
+        //GenerateTerrain();
 
-        PlaceTown();
+        //PlaceTown();
+
+        townParent.LogBuildings();
 
         PlaceForest();
 
