@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5548579e4c37e8e41a18fc96b9fd397b, type: 3}
+  m_Name: city_features
+  m_EditorClassIdentifier: 
+  Tiles:
+  - _group: city_features
+    _tileID: 1085976624
+    Default: {fileID: 8734985888658114161, guid: d9baec7ef118c4e1cac6aab487fe0d65, type: 3}
+    Randoms: []
+    Random: 0
+    _name: stairs
+    Rules:
+    - IsActive: 1
+      Object: {fileID: 8734985888658114161, guid: d9baec7ef118c4e1cac6aab487fe0d65, type: 3}
+      Random: 0
+      Randoms: []
+      Relations: 000000000000000000000000000000000100000000000000000000000000000000000000000000000200000000000000020000000000000001000000000000000200000000000000000000000000000000000000000000000200000000000000000000000000000000000000
+      AllowRotation: 000100
+      _ruleID: -277873866
+  - _group: city_features
+    _tileID: 1408964763
+    Default: {fileID: 3283654923506818984, guid: 3349db301d6454c14893e6d02a9a4520, type: 3}
+    Randoms: []
+    Random: 0
+    _name: fences
+    Rules: []

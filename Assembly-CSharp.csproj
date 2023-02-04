@@ -56,6 +56,7 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_TileLayer.cs" />
     <Compile Include="Assets/Scripts/NPCLandmark.cs" />
     <Compile Include="Assets/RotationalAnimation.cs" />
     <Compile Include="Assets/Scripts/MoneyManager.cs" />
@@ -77,10 +78,12 @@
     <Compile Include="Assets/Scripts/DoorMeshLink.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
     <Compile Include="Assets/NavMeshComponents/Scripts/NavMeshLink.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Autotiles3D_EnumUtility.cs" />
     <Compile Include="Assets/Dialogue/ChoiceDialogueNode.cs" />
     <Compile Include="Assets/BuildingLevel.cs" />
     <Compile Include="Assets/Scripts/ItemStackPool.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Autotiles3D_Settings.cs" />
     <Compile Include="Assets/DialogueBox.cs" />
     <Compile Include="Assets/ItemCollider.cs" />
     <Compile Include="Assets/Platform.cs" />
@@ -111,10 +114,13 @@
     <Compile Include="Assets/Scripts/Terrain/TownParent.cs" />
     <Compile Include="Assets/Shaders/MonkColorChanger.cs" />
     <Compile Include="Assets/Scripts/ChoppableObject.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_Grid.cs" />
     <Compile Include="Assets/Scripts/SpriteSort.cs" />
     <Compile Include="Assets/Shaders/MoneyCC.cs" />
     <Compile Include="Assets/TileMapDebug.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_BlockBehaviour.cs" />
     <Compile Include="Assets/NPCOneWayPlatform.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Autotiles3D_Utility.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Item Logic/Item.cs" />
     <Compile Include="Assets/Store/StorePanel.cs" />
@@ -157,6 +163,7 @@
     <Compile Include="Assets/Scripts/Managers/CursorManager.cs" />
     <Compile Include="Assets/BuildingPiece.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_Tile.cs" />
     <Compile Include="Assets/InteriorColliderParent.cs" />
     <Compile Include="Assets/Scripts/TestNav.cs" />
     <Compile Include="Assets/Scripts/Managers/InventoryManager.cs" />
@@ -182,10 +189,12 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
     <Compile Include="Assets/Scripts/ItemScripts/Specific Items/Pickaxe.cs" />
     <Compile Include="Assets/Scripts/Managers/TimeManager.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_Anchor.cs" />
     <Compile Include="Assets/Foot.cs" />
     <Compile Include="Assets/Shaders/SofaCC.cs" />
     <Compile Include="Assets/Scripts/ShaderReplacer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Autotiles3D_TileGroup.cs" />
     <Compile Include="Assets/NPCNavigation.cs" />
     <Compile Include="Assets/Shaders/ColorChanger.cs" />
     <Compile Include="Assets/Scripts/Managers/BuildingManager.cs" />
@@ -213,6 +222,7 @@
     <Compile Include="Assets/Scripts/ItemStackTrigger.cs" />
     <Compile Include="Assets/Scripts/Wall.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Autotiles3D_ExtensionUtility.cs" />
     <Compile Include="Assets/Scripts/Player/ItemUser.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +244,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets/Shaders/SpriteSort/UnlitSprite.shader" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
+    <None Include="Assets/Autotiles3D/readme.txt.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
@@ -907,6 +918,9 @@
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
@@ -940,6 +954,9 @@
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
@@ -960,6 +977,9 @@
     </Reference>
     <Reference Include="PPv2URPConverters">
       <HintPath>Library/ScriptAssemblies/PPv2URPConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
@@ -988,6 +1008,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -996,6 +1019,9 @@
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core">
       <HintPath>Library/ScriptAssemblies/Unity.Services.Core.dll</HintPath>
@@ -1014,6 +1040,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>

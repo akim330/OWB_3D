@@ -57,8 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/NavMeshComponents/Editor/NavMeshModifierEditor.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Editor/Autotiles3D_EditorUtility.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Editor/Autotiles3D_SettingsProvider.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Editor/Autotiles3D_GridRaycast.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Editor/Autotiles3D_TileGroupInspector.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Editor/Autotiles3D_GridInspector.cs" />
     <Compile Include="Assets/NavMeshComponents/Editor/NavMeshComponentsGUIUtility.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Editor/Autotiles3D_MeshCombiner.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Editor/Autotiles3D_BlockBehaviourInspector.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Core/Editor/Autotiles3D_TileLayerInspector.cs" />
     <Compile Include="Assets/NavMeshComponents/Editor/NavMeshLinkEditor.cs" />
+    <Compile Include="Assets/Autotiles3D/Scripts/Utility/Editor/Autotiles3D_SettingsWindow.cs" />
     <Compile Include="Assets/NavMeshComponents/Editor/NavMeshSurfaceEditor.cs" />
     <Compile Include="Assets/NavMeshComponents/Editor/NavMeshModifierVolumeEditor.cs" />
   </ItemGroup>
@@ -771,6 +780,9 @@
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
@@ -804,6 +816,9 @@
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
@@ -824,6 +839,9 @@
     </Reference>
     <Reference Include="PPv2URPConverters">
       <HintPath>Library/ScriptAssemblies/PPv2URPConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
@@ -852,6 +870,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -860,6 +881,9 @@
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core">
       <HintPath>Library/ScriptAssemblies/Unity.Services.Core.dll</HintPath>
@@ -878,6 +902,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>

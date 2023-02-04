@@ -44,7 +44,7 @@ public class TerrainGeneration : MonoBehaviour
     [Header("NavMesh")]
     [SerializeField] private NavMeshRuntime _mesh;
 
-    private TownParent townParent;
+    [SerializeField] private TownParent townParent;
 
 
     //private CompositeCollider2D _collider;
