@@ -129,6 +129,7 @@
     <Compile Include="Assets/Scripts/Managers/ExtIntManager_OLD.cs" />
     <Compile Include="Assets/SpriteManager.cs" />
     <Compile Include="Assets/DoorOperator.cs" />
+    <Compile Include="Assets/Scripts/MeshMaterialChanger.cs" />
     <Compile Include="Assets/Scripts/FollowCam.cs" />
     <Compile Include="Assets/NPCDialogue.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Assets/Scripts/MoneyTracker.cs" />
     <Compile Include="Assets/NPCs/NPCSchedule.cs" />
     <Compile Include="Assets/Scripts/Managers/PaletteManager.cs" />
+    <Compile Include="Assets/Scripts/ApartmentColorChanger.cs" />
     <Compile Include="Assets/Dialogue/StaticDialogueNode.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
     <Compile Include="Assets/Scripts/Managers/BiomeManager.cs" />
@@ -224,8 +226,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
     <Compile Include="Assets/Autotiles3D/Scripts/Utility/Autotiles3D_ExtensionUtility.cs" />
     <Compile Include="Assets/Scripts/Player/ItemUser.cs" />
-    <Compile Include="Assets/Scripts/ApartmentColorChanger.cs" />
-    <Compile Include="Assets/Scripts/MeshMaterialChanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
