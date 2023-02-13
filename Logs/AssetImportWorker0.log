@@ -1,0 +1,346 @@
+Unity Editor version:    2021.3.5f1 (40eb3a945986)
+Branch:                  2021.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 12.5.1 (Build 21G83)
+Darwin version:          21.6.0
+Architecture:            arm64
+Running under Rosetta:   NO
+Available memory:        16384 MB
+Using pre-set license
+Pro License: YES
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/andrewkim/Desktop/Games/OWB_3D.nosync
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+54443
+Successfully changed project path to: /Users/andrewkim/Desktop/Games/OWB_3D.nosync
+/Users/andrewkim/Desktop/Games/OWB_3D.nosync
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 108.33 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.5f1 (40eb3a945986)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/andrewkim/Desktop/Games/OWB_3D.nosync/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+ preferred device: Apple M1 (high power)
+Metal devices available: 1
+0: Apple M1 (high power)
+Using device Apple M1 (high power)
+Initializing Metal device caps: Apple M1
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56661
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.000346 seconds.
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 114.41 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.518 seconds
+Domain Reload Profiling:
+	ReloadAssembly (518ms)
+		BeginReloadAssembly (69ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (0ms)
+		EndReloadAssembly (372ms)
+			LoadAssemblies (68ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (86ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (232ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (114ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (85ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001655 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image /Users/andrewkim/Desktop/Games/OWB_3D.nosync/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image /Users/andrewkim/Desktop/Games/OWB_3D.nosync/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 124.53 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.152 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1153ms)
+		BeginReloadAssembly (60ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1010ms)
+			LoadAssemblies (66ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (248ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (76ms)
+			SetupLoadedEditorAssemblies (575ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (2ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (126ms)
+				BeforeProcessingInitializeOnLoad (101ms)
+				ProcessInitializeOnLoadAttributes (279ms)
+				ProcessInitializeOnLoadMethodAttributes (66ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (3ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2021.3.5f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6482 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 262 unused Assets / (3.4 MB). Loaded Objects now: 7178.
+Memory consumption went from 402.5 MB to 399.1 MB.
+Total: 3.371166 ms (FindLiveObjects: 0.274750 ms CreateObjectMapping: 0.146500 ms MarkObjects: 2.472833 ms  DeleteObjects: 0.476458 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 14698.978098 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63ec816e5ff43ceb1d04c22b72a20bc1') in 0.063104 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.333865 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44cd71712852b66744402667a00ea5fa') in 0.007677 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.322001 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bec2c33c833cead29291233e197f1238') in 0.005884 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.160948 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75dd39cbbeab290d1b604de8e0062586') in 0.083534 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.979097 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5e21cb54c520b057f85323d86a58a1b') in 0.006072 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.984271 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a90c67becaf04e05478ebb5402ae2ebf') in 0.005934 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.572404 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e95f87926c851766d3ea0c827cde833') in 0.005294 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.006816 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '440e004182a17860d8838a38865b33ba') in 0.005483 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 12.133060 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '201ed49cd714ec76241112f92de5a7e5') in 0.005416 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 81.238371 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0aa291532f273e8607d1a13cf0b1ae68') in 0.029210 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.453880 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfeb2f4cc8eca4bc2ac128484878f610') in 0.005546 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.262071 seconds.
+  path: Assets/Models/Materials/apartment/red_apartmentB.png
+  artifactKey: Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/red_apartmentB.png using Guid(9b127e5b536054c2db058e9dd2bc8aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c78a731c4c478f79fd6d27e661bc3892') in 0.015064 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.269076 seconds.
+  path: Assets/Models/Materials/dblue_apartmentB_6_4F.png
+  artifactKey: Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/dblue_apartmentB_6_4F.png using Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a194409403e7b5d269cb33f88946720e') in 0.012071 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.488438 seconds.
+  path: Assets/Models/Materials/dblue_apartmentB_6_4F.png
+  artifactKey: Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/dblue_apartmentB_6_4F.png using Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30006cde0c6ce99d734b83c9092bca40') in 0.005973 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.528717 seconds.
+  path: Assets/Models/Materials/dblue_apartmentB_6_4F.png
+  artifactKey: Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/dblue_apartmentB_6_4F.png using Guid(fd2ff983a31af43b5b8fb7024dd75597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '591372f8ed221d9d3f8c1202e40fbbfc') in 0.010044 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.797303 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a64acc0311b463885c4e421b2e8acdb2') in 0.005828 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.932044 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18368b5d390f1c2a5a1b65fd6dd12851') in 0.006405 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.205648 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5bfde2f0f95519c1b7e91ac8fa55653') in 0.007132 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.445152 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f3d6aa2557a3e854b61b30294731128') in 0.006040 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.392695 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03cff4e3ccec82f2c5314a2a45f96ef7') in 0.005914 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.191239 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a23693acfc1c7489069ae5b8a6585e0') in 0.017933 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.247715 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '423657f1166299e886af3ea8c6ffda84') in 0.009676 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.331703 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed9d64bdfac4c4cd97906bf6630f80e9') in 0.009676 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.979631 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d0ce5276c3f44cdea3ccf0ed5cd92b9') in 0.009151 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.328079 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a64736ca1a1c3f6644a990a68890c20d') in 0.009565 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.157535 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '882222a6ca6cef7e0fb63ef32033eb98') in 0.008186 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.750536 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59d4aeda7c12f9fe7a95789301b44fb9') in 0.009817 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.211192 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8b7ae39a914ef157f72f6e5e1e6779c') in 0.010413 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.517597 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b9598e266db36a24a8ebe228e535b77') in 0.009279 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 634.403332 seconds.
+  path: Assets/Models/Materials/apartment/dblue_apartmentB.png
+  artifactKey: Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Materials/apartment/dblue_apartmentB.png using Guid(8f26648442118492cb42580c1a3dfad2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fdd881700c30c40fcc46065ee00fd5c') in 0.022016 seconds 
