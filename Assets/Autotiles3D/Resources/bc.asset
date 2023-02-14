@@ -104,3 +104,10 @@ MonoBehaviour:
     Random: 0
     _name: bc_diagonal
     Rules: []
+  - _group: bc
+    _tileID: -1867930105
+    Default: {fileID: 1766107782337617727, guid: 1c237c39f93d343508371375eed7b5f9, type: 3}
+    Randoms: []
+    Random: 0
+    _name: bc1
+    Rules: []
